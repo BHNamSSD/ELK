@@ -1,0 +1,124 @@
+1 What is Elastic Stack
+2 Install OpenJDK, wget, curl 11 
+3 Install and configure Elasticsearch 
+4 Install and configure logstash 
+5 Install Kibana 
+6 Install filebeat 
+7 Access Kibana Dashboard 
+
+
+
+https://www.youtube.com/watch?v=DEFA6bgv4zM&list=PLdsu0umqbb8Pyo3fgJADxcTMkwGk--fU3&index=6
+
+install elasticsearch
+#sudo apt update
+
+#sudo apt-get install apt-transport-https
+
+#sudo apt install openjdk-11-jdk
+#java -version
+
+#sudo nano /etc/environment
+#JAVA_HOME=”/usr/lib/jvm/java-11-openjdk-amd64”
+
+#source /etc/environment
+#echo $JAVA_HOME
+
+#wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+#echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-8.x.list
+
+#sudo apt-get update
+#sudo apt-get install elasticsearch
+
+#sudo systemctl start elasticsearch
+#sudo systemctl enable elasticsearch
+#sudo systemctl status elasticsearch
+
+
+#sudo nano /etc/elasticsearch/elasticsearch.yml
+
+# sudo systemctl restart elasticsearch
+
+#curl -X GET "localhost:9200"
+
+
+
+
+
+
+
+
+==================================================
+
+Install logstash
+
+#sudo apt-get install logstash
+
+# sudo systemctl start logstash
+#sudo systemctl enable logstash
+# sudo systemctl status logstash
+
+#sudo vi /etc/logstash/logstash.yml
+
+
+==================================================
+
+Install Kibana
+
+#sudo apt-get install kibana
+#sudo systemctl enable kibana
+#sudo systemctl start kibana
+#sudo systemctl status kibana
+
+#sudo vi /etc/kibana/kibana.yml
+->server.port: 5601
+->server.host: “0.0.0.0”
+->elasticsearch.host: [“http://localhost:9200”]
+
+#sudo systemctl restart kibana
+Test kibana
+http://IP:5601
+
+
+===================================================
+
+
+Install Filebeat
+#sudo apt-get install filebeat
+
+
+Configure filebeat
+#sudo vi /etc/filebeat/filebeat.yml
+
+#sudo filebeat modules enable system
+# sudo filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["0.0.0.0:9200"]'
+
+
+#sudo systemctl start filebeat
+#sudo systemctl enable filebeat
+
+check
+#curl -XGET http://IP:9200/_cat/indices?v
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
