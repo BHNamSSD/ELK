@@ -22,7 +22,7 @@
         <mxCell id="U1yJLpILrfk-gPTqElFX-34" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="10" y="220" width="810" height="990" as="geometry" />
         </mxCell>
-        <mxCell id="U1yJLpILrfk-gPTqElFX-35" value="enp5s0" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="U1yJLpILrfk-gPTqElFX-35" value="enp5s0" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="355" y="260" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="U1yJLpILrfk-gPTqElFX-36" value="Card vật lý" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
