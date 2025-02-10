@@ -137,16 +137,37 @@
           <mxGeometry x="110" y="58" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="U1yJLpILrfk-gPTqElFX-80" value="&lt;div&gt;elk-dmz.bhnam.local&lt;/div&gt;&lt;div&gt;172.16.10.3&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
-          <mxGeometry x="360" y="1240" width="65" height="85" as="geometry" />
+          <mxGeometry x="367.5" y="1310" width="65" height="85" as="geometry" />
         </mxCell>
         <mxCell id="U1yJLpILrfk-gPTqElFX-81" value="&lt;div&gt;elk-lan.bhnam.local&lt;/div&gt;&lt;div&gt;192.168.10.3&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
-          <mxGeometry x="161" y="1490" width="65" height="85" as="geometry" />
+          <mxGeometry x="151" y="1550" width="65" height="85" as="geometry" />
         </mxCell>
-        <mxCell id="U1yJLpILrfk-gPTqElFX-82" value="&lt;div&gt;elk.bhnam.local&lt;/div&gt;&lt;div&gt;master cluster&lt;/div&gt;&lt;div&gt;10.10.10.3&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
-          <mxGeometry x="598.5" y="1470" width="65" height="85" as="geometry" />
+        <mxCell id="U1yJLpILrfk-gPTqElFX-84" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=2;" edge="1" parent="1" source="U1yJLpILrfk-gPTqElFX-81" target="U1yJLpILrfk-gPTqElFX-80">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="1590" as="sourcePoint" />
+            <mxPoint x="380" y="1540" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="U1yJLpILrfk-gPTqElFX-83" value="&lt;div&gt;kibana.bhnam.local&lt;/div&gt;&lt;div&gt;10.10.10.13&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
-          <mxGeometry x="600" y="1660" width="65" height="85" as="geometry" />
+        <mxCell id="U1yJLpILrfk-gPTqElFX-87" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="1490" width="400" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="U1yJLpILrfk-gPTqElFX-88" value="&lt;div&gt;elk.bhnam.local&lt;/div&gt;&lt;div&gt;master cluster&lt;/div&gt;&lt;div&gt;10.10.10.3&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
+          <mxGeometry x="575" y="1550" width="65" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="U1yJLpILrfk-gPTqElFX-89" value="&lt;div&gt;kibana.bhnam.local&lt;/div&gt;&lt;div&gt;10.10.10.13&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
+          <mxGeometry x="690" y="1590" width="65" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="U1yJLpILrfk-gPTqElFX-90" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=2;" edge="1" parent="1" source="U1yJLpILrfk-gPTqElFX-81" target="U1yJLpILrfk-gPTqElFX-88">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="1590" as="sourcePoint" />
+            <mxPoint x="380" y="1540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="U1yJLpILrfk-gPTqElFX-91" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=2;" edge="1" parent="1" source="U1yJLpILrfk-gPTqElFX-80" target="U1yJLpILrfk-gPTqElFX-88">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="1590" as="sourcePoint" />
+            <mxPoint x="380" y="1540" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
