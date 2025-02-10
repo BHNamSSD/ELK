@@ -22,6 +22,15 @@
         <mxCell id="U1yJLpILrfk-gPTqElFX-10" value="&lt;h4 align=&quot;left&quot;&gt;DHCP&lt;/h4&gt;&lt;h4 align=&quot;left&quot;&gt;172.16.10.0/24&lt;/h4&gt;&lt;h4 align=&quot;left&quot;&gt;192.168.10.0/24&lt;/h4&gt;&lt;h4 align=&quot;left&quot;&gt;10.10.10.0/28&lt;/h4&gt;&lt;h4 align=&quot;left&quot;&gt;22.22.22.0/30&lt;/h4&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="610" y="10" width="140" height="150" as="geometry" />
         </mxCell>
+        <mxCell id="U1yJLpILrfk-gPTqElFX-11" value="enp5s0" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="260" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U1yJLpILrfk-gPTqElFX-12" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.89;entryY=0.87;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="U1yJLpILrfk-gPTqElFX-11" target="U1yJLpILrfk-gPTqElFX-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="230" y="500" as="sourcePoint" />
+            <mxPoint x="280" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
