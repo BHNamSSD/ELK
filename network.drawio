@@ -20,7 +20,7 @@
           <mxGeometry x="610" y="10" width="140" height="150" as="geometry" />
         </mxCell>
         <mxCell id="U1yJLpILrfk-gPTqElFX-34" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="10" y="220" width="810" height="680" as="geometry" />
+          <mxGeometry x="10" y="275" width="810" height="990" as="geometry" />
         </mxCell>
         <mxCell id="U1yJLpILrfk-gPTqElFX-35" value="enp5s0" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="355" y="260" width="120" height="60" as="geometry" />
@@ -40,8 +40,23 @@
             <mxPoint x="216" y="122" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="U1yJLpILrfk-gPTqElFX-39" value="" style="shape=mxgraph.cisco.routers.router;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="375" y="350" width="78" height="53" as="geometry" />
+        <mxCell id="U1yJLpILrfk-gPTqElFX-40" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="515" width="370" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="U1yJLpILrfk-gPTqElFX-41" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="414" y="515" width="400" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="U1yJLpILrfk-gPTqElFX-42" value="" style="shape=mxgraph.cisco.routers.router;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="385" y="360" width="78" height="53" as="geometry" />
+        </mxCell>
+        <mxCell id="U1yJLpILrfk-gPTqElFX-43" value="" style="shape=mxgraph.cisco.routers.router;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="575" y="540" width="78" height="53" as="geometry" />
+        </mxCell>
+        <mxCell id="U1yJLpILrfk-gPTqElFX-44" value="PFWAN-22.22.22.0/30" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="530" y="900" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="U1yJLpILrfk-gPTqElFX-45" value="DMZ-172.16.10.0/24" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="900" width="140" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
