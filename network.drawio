@@ -118,6 +118,9 @@
             <mxPoint x="280" y="490" as="targetPoint" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="U1yJLpILrfk-gPTqElFX-73" value="&lt;div&gt;webServer.bhnam.local&lt;/div&gt;&lt;div&gt;172.16.10.20&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
+          <mxGeometry x="153.5" y="675" width="65" height="85" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
