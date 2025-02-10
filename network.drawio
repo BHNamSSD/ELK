@@ -136,6 +136,15 @@
         <mxCell id="U1yJLpILrfk-gPTqElFX-79" value="Internet" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="110" y="58" width="60" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="U1yJLpILrfk-gPTqElFX-80" value="&lt;div&gt;elk-dmz.bhnam.local&lt;/div&gt;&lt;div&gt;172.16.10.3&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
+          <mxGeometry x="370" y="1250" width="65" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="U1yJLpILrfk-gPTqElFX-81" value="&lt;div&gt;elk-lan.bhnam.local&lt;/div&gt;&lt;div&gt;192.168.10.3&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
+          <mxGeometry x="200" y="1480" width="65" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="U1yJLpILrfk-gPTqElFX-82" value="&lt;div&gt;elk.bhnam.local&lt;/div&gt;&lt;div&gt;master cluster&lt;/div&gt;&lt;div&gt;10.10.10.3&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
+          <mxGeometry x="598.5" y="1470" width="65" height="85" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
