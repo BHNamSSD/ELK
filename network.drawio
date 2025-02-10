@@ -20,7 +20,7 @@
           <mxGeometry x="610" y="10" width="140" height="150" as="geometry" />
         </mxCell>
         <mxCell id="U1yJLpILrfk-gPTqElFX-34" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="10" y="220" width="810" height="990" as="geometry" />
+          <mxGeometry x="17" y="230" width="810" height="990" as="geometry" />
         </mxCell>
         <mxCell id="U1yJLpILrfk-gPTqElFX-35" value="enp5s0" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="355" y="260" width="120" height="60" as="geometry" />
@@ -94,16 +94,16 @@
         <mxCell id="U1yJLpILrfk-gPTqElFX-66" value="PFWAN" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="370" y="468" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="U1yJLpILrfk-gPTqElFX-67" value="" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.dns_server;" vertex="1" parent="1">
-          <mxGeometry x="60" y="548.75" width="76.5" height="92.5" as="geometry" />
+        <mxCell id="U1yJLpILrfk-gPTqElFX-67" value="&lt;div&gt;dnsServer.bhnam.local&lt;/div&gt;&lt;div&gt;172.16.10.30&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.dns_server;" vertex="1" parent="1">
+          <mxGeometry x="45.5" y="558.75" width="76.5" height="92.5" as="geometry" />
         </mxCell>
-        <mxCell id="U1yJLpILrfk-gPTqElFX-68" value="" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
-          <mxGeometry x="255" y="552.5" width="65" height="85" as="geometry" />
+        <mxCell id="U1yJLpILrfk-gPTqElFX-68" value="&lt;div&gt;elk-dmz.bhnam.local&lt;/div&gt;&lt;div&gt;172.16.10.3&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
+          <mxGeometry x="255" y="562.5" width="65" height="85" as="geometry" />
         </mxCell>
-        <mxCell id="U1yJLpILrfk-gPTqElFX-69" value="" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
+        <mxCell id="U1yJLpILrfk-gPTqElFX-69" value="&lt;div&gt;elk-lan.bhnam.local&lt;/div&gt;&lt;div&gt;192.168.10.3&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
           <mxGeometry x="440" y="562.5" width="65" height="85" as="geometry" />
         </mxCell>
-        <mxCell id="U1yJLpILrfk-gPTqElFX-70" value="" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
+        <mxCell id="U1yJLpILrfk-gPTqElFX-70" value="&lt;div&gt;elk.bhnam.local&lt;/div&gt;&lt;div&gt;master cluster&lt;/div&gt;&lt;div&gt;10.10.10.3&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
           <mxGeometry x="663.5" y="562.5" width="65" height="85" as="geometry" />
         </mxCell>
         <mxCell id="U1yJLpILrfk-gPTqElFX-71" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.88;exitY=0.9;exitDx=0;exitDy=0;exitPerimeter=0;strokeWidth=2;" edge="1" parent="1" source="U1yJLpILrfk-gPTqElFX-43" target="U1yJLpILrfk-gPTqElFX-48">
