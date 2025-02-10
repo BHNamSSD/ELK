@@ -173,7 +173,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="U1yJLpILrfk-gPTqElFX-97" value="&lt;div&gt;logstash.bhnam.local&lt;/div&gt;&lt;div&gt;172.16.10.3&lt;/div&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.license_server;" vertex="1" parent="1">
-          <mxGeometry x="405" y="1320" width="65" height="85" as="geometry" />
+          <mxGeometry x="410" y="1350" width="65" height="85" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
