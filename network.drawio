@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0" version="26.0.11">
   <diagram name="Trang-1" id="SLQuI4cw6ELVvdU5NzWQ">
-    <mxGraphModel dx="1226" dy="754" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1226" dy="822" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -20,7 +20,7 @@
           <mxGeometry x="610" y="10" width="140" height="150" as="geometry" />
         </mxCell>
         <mxCell id="U1yJLpILrfk-gPTqElFX-34" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="17" y="230" width="810" height="990" as="geometry" />
+          <mxGeometry x="10" y="220" width="810" height="990" as="geometry" />
         </mxCell>
         <mxCell id="U1yJLpILrfk-gPTqElFX-35" value="enp5s0" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="355" y="260" width="120" height="60" as="geometry" />
