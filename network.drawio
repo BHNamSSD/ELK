@@ -133,9 +133,6 @@
         <mxCell id="U1yJLpILrfk-gPTqElFX-77" value="pfsense" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="96" y="430" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="U1yJLpILrfk-gPTqElFX-78" value="Text" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="480" y="430" width="60" height="30" as="geometry" />
-        </mxCell>
         <mxCell id="U1yJLpILrfk-gPTqElFX-79" value="Internet" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="110" y="58" width="60" height="30" as="geometry" />
         </mxCell>
