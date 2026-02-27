@@ -7,9 +7,6 @@
 7 Access Kibana Dashboard 
 
 
-
-https://www.youtube.com/watch?v=DEFA6bgv4zM&list=PLdsu0umqbb8Pyo3fgJADxcTMkwGk--fU3&index=6
-
 install elasticsearch
 #sudo apt update
 
@@ -99,6 +96,7 @@ Configure filebeat
 
 check
 #curl -XGET http://IP:9200/_cat/indices?v
+
 
 
 
