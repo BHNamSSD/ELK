@@ -1,19 +1,15 @@
 # ELK
-- ELK SOC
 - Link Inciden Report: https://drive.google.com/drive/folders/1Qnku5wpwfOQ6rRY1La3a0lDebusTeU7z?usp=sharing
+# -----------------------------------------------------------------------------------------------------------------
+# ELK Stack SIEM Lab – Log Monitoring & Incident Detection
+## Overview
+- This project demonstrates the deployment of a full SIEM (Security Information and Event Management) system using the ELK Stack (Elasticsearch, Logstash, Kibana) to collect, process, and analyze logs from multiple sources in a simulated enterprise environment.
+- The lab focuses on real-world attack detection, log correlation, and incident response workflows, making it suitable for SOC Analyst and Blue Team practice.
 
-🔐 ELK Stack SIEM Lab – Log Monitoring & Incident Detection
-📌 Overview
+# Architecture
+- The system is built on a virtualized infrastructure using Proxmox, including:
 
-This project demonstrates the deployment of a full SIEM (Security Information and Event Management) system using the ELK Stack (Elasticsearch, Logstash, Kibana) to collect, process, and analyze logs from multiple sources in a simulated enterprise environment.
-
-The lab focuses on real-world attack detection, log correlation, and incident response workflows, making it suitable for SOC Analyst and Blue Team practice.
-
-🏗️ Architecture
-
-The system is built on a virtualized infrastructure using Proxmox, including:
-
-ELK Stack
+# ELK Stack
 Elasticsearch – Log storage and indexing
 Logstash – Log processing and parsing
 Kibana – Visualization and detection dashboards
