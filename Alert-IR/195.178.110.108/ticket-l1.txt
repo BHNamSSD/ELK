@@ -1,0 +1,41 @@
+Title
+[Medium][WEB] Detect Bot Scanning - suspicious IP 195.178.110.108
+
+Summary
+Detected potential bot scanning activity from external IP 195.178.110.108 target web server on Mar 16, 2026
+
+Alert details
+- Timestamp: 2026-03-15T23:16:44.456Z
+- Source IP: 195.178.110.108
+- Destination: web server
+- Rule: [WEB] Detect Bot Scanning
+- Severity: Medium
+- Risk score: 40
+- Count: 289
+
+Investigation
+- Multiple HTTP requests observed in short timeframe
+- Access attemps sensitive paths (/lara, /xampp, /env.backup)
+- Suspiciout User-agent detected: curl
+- No abnormal response codes (200) detected
+
+Impact assessment
+- No evidence of successful exploitation, Activity appears limited to reconnaissance
+
+Classtification
+- Malicious reconnaissance activity
+
+Recommend Actions
+- Block source IP at WAF/Firewall
+- Review web server logs for possible exploitation attempts
+- Monitor for repeated scanning from similar IP ranges
+
+Actions taken
+- Check IP 195.178.110.108 on AbuseIPDB: 100% with categries Hacking, Web App Attack  
+- Check IP 195.178.110.108 on Virus Total: 9/94 security vendors flagged this IP address as malicious 
+
+Status
+- Escalated
+
+Escalation
+- Assign: SOC L2

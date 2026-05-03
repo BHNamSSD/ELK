@@ -1,0 +1,118 @@
+{
+         "input" => {
+        "type" => "log"
+    },
+           "ecs" => {
+        "version" => "8.0.0"
+    },
+          "tags" => [
+        [0] "dvwa-modsecurity",
+        [1] "beats_input_raw_event"
+    ],
+      "@version" => "1",
+           "log" => {
+        "offset" => 17825,
+          "file" => {
+            "path" => "/var/log/nginx/modsec_audit.log"
+        }
+    },
+          "json" => {
+        "transaction" => {
+              "server_id" => "86ac953691ead151eab514d9e7f33264a33a266d",
+               "messages" => [
+                [0] {
+                    "details" => {
+                               "rev" => "",
+                         "reference" => "o2,12v9,16",
+                            "ruleId" => "10001",
+                          "severity" => "0",
+                              "file" => "/etc/nginx/modsec/custom-rules.conf",
+                             "match" => "Matched \"Operator `Rx' with parameter `(?i)union\\s+select' against variable `ARGS:id' (Value: `1 union select 1' )",
+                              "tags" => [],
+                              "data" => "",
+                          "maturity" => "0",
+                               "ver" => "",
+                          "accuracy" => "0",
+                        "lineNumber" => "8"
+                    },
+                    "message" => "SQL Injection - UNION SELECT"
+                }
+            ],
+               "response" => {
+                "http_code" => 302
+            },
+              "host_port" => 80,
+              "client_ip" => "192.168.22.2",
+             "time_stamp" => "Wed Mar 18 15:53:21 2026",
+                "host_ip" => "192.168.22.20",
+                "request" => {
+                     "headers" => {
+                          "Host" => "dvwa.bhnam-elk.com",
+                        "Accept" => "*/*",
+                    "User-Agent" => "curl/8.18.0"
+                },
+                         "uri" => "/?id=1%20union%20select%201",
+                "http_version" => 1.1,
+                      "method" => "GET"
+            },
+            "client_port" => 51202,
+              "unique_id" => "177382400151.306033",
+               "producer" => {
+                      "connector" => "ModSecurity-nginx v1.0.3",
+                "secrules_engine" => "DetectionOnly",
+                    "modsecurity" => "ModSecurity v3.0.12 (Linux)",
+                     "components" => []
+            }
+        }
+    },
+         "agent" => {
+                "name" => "elk-dns",
+                "type" => "filebeat",
+        "ephemeral_id" => "8fad2854-2bbe-40ec-a38e-7b8de4c26100",
+             "version" => "8.19.12",
+                  "id" => "afeadff7-1848-413c-bbdb-b7ab58cae834"
+    },
+    "@timestamp" => 2026-03-19T09:58:57.446Z,
+          "host" => {
+         "architecture" => "x86_64",
+                   "os" => {
+              "family" => "debian",
+                "name" => "Ubuntu",
+                "type" => "linux",
+              "kernel" => "6.8.0-101-generic",
+            "platform" => "ubuntu",
+             "version" => "24.04.4 LTS (Noble Numbat)",
+            "codename" => "noble"
+        },
+                  "mac" => [
+            [0] "BC-24-11-36-8C-38"
+        ],
+                 "name" => "elk-dns",
+                   "ip" => [
+            [0] "192.168.22.20",
+            [1] "fe80::be24:11ff:fe36:8c38"
+        ],
+             "hostname" => "elk-dns",
+        "containerized" => false,
+                   "id" => "e8f09790d6fd462db9b6fe86b2225a8b"
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

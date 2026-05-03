@@ -1,0 +1,29 @@
+🧩 Cách 1: Thêm repository Elastic (Khuyên dùng)
+🔧 Bước 1. Thêm khóa GPG
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+
+sudo apt-get install apt-transport-https
+
+echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+
+sudo apt-get update && sudo apt-get install journalbeat
+
+
+Gỡ gói cài đặt:
+sudo apt-get remove --purge journalbeat -y
+
+sudo apt-get autoremove --purge journalbeat -y
+
+
+sudo rm -rf /etc/journalbeat
+sudo rm -rf /var/lib/journalbeat
+sudo rm -rf /var/log/journalbeat
+sudo rm -rf /usr/share/journalbeat
+
+
+
+
+
+
+
+

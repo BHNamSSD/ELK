@@ -1,0 +1,243 @@
+#create index lab-person
+PUT /lab-person
+{
+  "settings": {
+    "number_of_replicas": 0
+  },
+  "mappings": {
+    "properties": {
+      "name": {"type": "text" },
+      "age": {"type": "integer"},
+      "address": {"type": "text"},
+      "phone": {"type": "integer"},
+      "work": {"type": "text"}
+    }
+  }
+}
+
+
+#information lab-person
+GET /lab-person
+
+
+#add tags to mapping of lab-person
+PUT /lab-person/_mapping
+{
+  "properties":
+  {
+    "tags":{
+      "type": "keyword"
+    }
+  }
+}
+
+#check resolve
+GET _resolve/index/lab-person
+#check stats
+GET /lab-person/_stats
+#check mapping
+GET /lab-person/_mapping
+
+GET _cat/indices/lab-person
+
+
+
+
+#add data to lab-person
+
+
+
+GET /lab-person/_doc
+
+
+PUT dsm-logs-test
+
+
+GET /dsm-logs-2025.09.13/_mapping
+GET dsm-logs-2025.09.13/_settings
+
+
+
+
+
+DELETE _data_stream/dsm-logs-2025.09.15
+
+
+
+
+PUT _index_template/dsm-logs-template
+{
+  "index_patterns": ["dsm-logs-*"],
+  "priority": 200,
+  "template": {
+    "settings": {
+      "index.number_of_replicas": "0",
+      "index.refresh_interval": "1s"
+    },
+    "mappings": {
+      "properties": {
+        "@timestamp": { "type": "date" },
+        "@version": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        },
+        "auth_method": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        },
+        "dsm_time": { "type": "date" },
+        "event": {
+          "properties": {
+            "original": {
+              "type": "text",
+              "fields": {
+                "keyword": { "type": "keyword", "ignore_above": 256 }
+              }
+            }
+          }
+        },
+        "failure_reason": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        },
+        "host": {
+          "properties": {
+            "ip": {
+              "type": "text",
+              "fields": {
+                "keyword": { "type": "keyword", "ignore_above": 256 }
+              }
+            }
+          }
+        },
+        "hostname": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        },
+        "log_source": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        },
+        "message": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        },
+        "msg": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        },
+        "program": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        },
+        "result": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        },
+        "service": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        },
+        "src_ip": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        },
+        "status": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        },
+        "syslog_pri": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        },
+        "syslog_timestamp": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        },
+        "type": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        },
+        "user": {
+          "type": "text",
+          "fields": {
+            "keyword": { "type": "keyword", "ignore_above": 256 }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+GET /_security/api_key
+
+
+POST /_security/api_key
+{
+  "name": "logstash-api-key-dms-v2",
+  "role_descriptors": {
+    "logstash_writer": {
+      "cluster": ["monitor","manage_index_templates","manage_ilm"],
+      "indices": [
+        {
+          "names": ["logs-dsm-*"],
+          "privileges": ["auto_configure", "write","create_index","create"
+          ]
+        }
+      ]
+    }
+  }
+}
+
+GET _data_stream/logs-dsm-default
+
+GET _data_stream/dsm
+
+GET .ds-dsm-logs-default-*/_search?size=5
+
+
+DELETE .ds-logs-dsm-default-2025.09.15-000001
+
+
+DELETE /_data_stream/logs-dsm-default
+
+
+
+
+
+
+
+
+
+

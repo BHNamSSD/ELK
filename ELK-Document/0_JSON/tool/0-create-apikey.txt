@@ -1,0 +1,18 @@
+
+POST /_security/api_key
+{
+    "name": "logstash-api-key-update",
+    "role_descriptors": {
+        "logstash_writer": {
+            "cluster": ["monitor"],
+            "index": [
+                {
+                    "names": ["dsm-logs-*"],
+                    "privileges": ["create_index", "write", "create_doc"]
+                }
+            ]
+        }
+    }
+}
+
+

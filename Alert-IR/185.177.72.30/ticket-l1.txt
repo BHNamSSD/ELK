@@ -1,0 +1,41 @@
+Title
+[Medium][WEB] Detect Bot Scanning - suspicious IP 185.177.72.30
+
+Summary
+Detected potential bot scanning activity from external IP 185.177.72.30 target web server on Mar 16, 2026
+
+Alert details
+- Timestamp: 2026-03-15T23:16:44.456Z
+- Source IP: 185.177.72.30
+- Destination: web server
+- Rule: [WEB] Detect Bot Scanning
+- Severity: Medium
+- Risk score: 40
+- Count: 403
+
+Investigation
+- Multiple HTTP requests observed in short timeframe
+- Access attemps sensitive paths (/testing /config)
+- Suspiciout User-agent detected: curl
+- No abnormal response codes (200) detected
+
+Impact assessment
+- No evidence of successful exploitation, Activity appears limited to reconnaissance
+
+Classtification
+- Malicious reconnaissance activity
+
+Recommend Actions
+- Block source IP at WAF/Firewall
+- Review web server logs for possible exploitation attempts
+- Monitor for repeated scanning from similar IP ranges
+
+Actions taken
+- Check IP 185.177.72.30 on AbuseIPDB: 100% with categries brute-force, bad web bot, web app attack
+- Check IP 185.177.72.30 on Virus Total: 14/94 security vendors flagged this IP address as malicious
+
+Status
+- Escalated
+
+Escalation
+- Assign: SOC L2

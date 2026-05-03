@@ -1,0 +1,55 @@
+Trong /var/log/auth.log (Ubuntu/Debian) hoặc /var/log/secure (CentOS/RHEL) thường có 4 nguồn log chính:
+
+----------------------------------------------------------------------------------------------------------
+1. sshd (OpenSSH daemon) ✅ QUAN TRỌNG NHẤT
+Đây là dịch vụ chịu trách nhiệm cho kết nối SSH từ xa.
+Thông tin log gồm:
+Accepted password / Accepted publickey (login thành công).
+Failed password (login thất bại, brute force).
+Connection closed / Disconnected.
+
+Dùng để phát hiện:
+Tấn công brute-force.
+Đăng nhập bất thường.
+Ai vào được hệ thống từ đâu.
+👉 Đây là ưu tiên số 1 khi phân tích bảo mật.
+
+----------------------------------------------------------------------------------------------------------
+2. sudo ✅ RẤT QUAN TRỌNG
+Ghi lại hành vi khi user chạy lệnh với quyền root.
+Thông tin log gồm:
+User nào chạy sudo.
+Command gì đã được chạy.
+Session mở/đóng.
+Dùng để phát hiện:
+Người dùng nào escalated lên root.
+Lệnh nguy hiểm (rm -rf /, thay đổi cấu hình hệ thống, tạo user mới…).
+👉 Đây là ưu tiên số 2, vì nếu attacker vào được máy thì sẽ cố dùng sudo để chiếm quyền root.
+
+----------------------------------------------------------------------------------------------------------
+3. cron ⚠️ TRUNG BÌNH
+Liên quan đến các job chạy định kỳ.
+Thông tin log:
+Ai tạo job cron.
+Khi nào job chạy.
+Dùng để phát hiện:
+Attacker tạo cron job để duy trì backdoor.
+Malware tự động chạy script.
+👉 Quan trọng để điều tra persistence (duy trì quyền truy cập), nhưng ít cần hơn sshd và sudo.
+
+----------------------------------------------------------------------------------------------------------
+4. systemd ⚠️ ÍT QUAN TRỌNG HƠN
+Ghi lại session login local (ví dụ user login bằng console, hoặc qua su).
+Thông tin log:
+Session opened/closed.
+Ai login bằng TTY.
+Dùng để phát hiện:
+Người dùng trực tiếp login trên máy (ít xảy ra trên server vì thường remote qua SSH).
+👉 Thường để tham khảo thêm, không phải trọng tâm chính khi giám sát.
+
+----------------------------------------------------------------------------------------------------------
+✅ Thứ tự ưu tiên theo bảo mật:
+sshd → bảo vệ truy cập từ xa.
+sudo → bảo vệ quyền root.
+cron → kiểm soát persistence (backdoor).
+systemd → giám sát login cục bộ.

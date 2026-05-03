@@ -1,0 +1,108 @@
+###########
+code logs:
+###########
+2025-09-19T14:44:15.635275+07:00 elk-center sshd[10692]: Server listening on 0.0.0.0 port 22.
+2025-09-19T14:44:15.635495+07:00 elk-center sshd[10692]: Server listening on :: port 22.
+2025-09-19T14:44:20.126483+07:00 elk-center sshd[10694]: Accepted password for root from 100.83.147.171 port 51209 ssh2
+2025-09-19T14:44:20.127786+07:00 elk-center sshd[10694]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:44:20.157447+07:00 elk-center systemd-logind[723]: New session 128 of user root.
+2025-09-19T14:44:20.174570+07:00 elk-center (systemd): pam_unix(systemd-user:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:45:01.388894+07:00 elk-center CRON[10807]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:45:01.391152+07:00 elk-center CRON[10807]: pam_unix(cron:session): session closed for user root
+2025-09-19T14:54:38.716348+07:00 elk-center sshd[10694]: Received disconnect from 100.83.147.171 port 51209:11: FlowSshClient: Disconnect on user's request
+2025-09-19T14:54:38.716653+07:00 elk-center sshd[10694]: Disconnected from user root 100.83.147.171 port 51209
+2025-09-19T14:54:38.716718+07:00 elk-center sshd[10694]: pam_unix(sshd:session): session closed for user root
+2025-09-19T14:54:38.719954+07:00 elk-center systemd-logind[723]: Session 128 logged out. Waiting for processes to exit.
+2025-09-19T14:54:38.720584+07:00 elk-center systemd-logind[723]: Removed session 128.
+2025-09-19T14:54:42.229424+07:00 elk-center sshd[10857]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=100.83.147.171  user=root
+2025-09-19T14:54:44.289610+07:00 elk-center sshd[10857]: Failed password for root from 100.83.147.171 port 51299 ssh2
+2025-09-19T14:54:44.447211+07:00 elk-center sshd[10857]: Received disconnect from 100.83.147.171 port 51299:11: FlowSshClient: Disconnect on user's request [preauth]
+2025-09-19T14:54:44.447915+07:00 elk-center sshd[10857]: Disconnected from authenticating user root 100.83.147.171 port 51299 [preauth]
+2025-09-19T14:54:46.493379+07:00 elk-center sshd[10859]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=100.83.147.171  user=root
+2025-09-19T14:54:48.437960+07:00 elk-center sshd[10859]: Failed password for root from 100.83.147.171 port 51300 ssh2
+2025-09-19T14:54:48.712272+07:00 elk-center sshd[10859]: Received disconnect from 100.83.147.171 port 51300:11: FlowSshClient: Disconnect on user's request [preauth]
+2025-09-19T14:54:48.712393+07:00 elk-center sshd[10859]: Disconnected from authenticating user root 100.83.147.171 port 51300 [preauth]
+2025-09-19T14:54:48.931130+07:00 elk-center (sd-pam): pam_unix(systemd-user:session): session closed for user root
+2025-09-19T14:54:55.760448+07:00 elk-center sshd[10862]: Accepted password for root from 100.83.147.171 port 51301 ssh2
+2025-09-19T14:54:55.761776+07:00 elk-center sshd[10862]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:54:55.786215+07:00 elk-center systemd-logind[723]: New session 131 of user root.
+2025-09-19T14:54:55.799980+07:00 elk-center (systemd): pam_unix(systemd-user:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:55:01.396396+07:00 elk-center CRON[10955]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:55:01.400243+07:00 elk-center CRON[10955]: pam_unix(cron:session): session closed for user root
+
+###############
+analysis logs:
+###############
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:44:15.635275+07:00 elk-center sshd[10692]: Server listening on 0.0.0.0 port 22.
+2025-09-19T14:44:15.635495+07:00 elk-center sshd[10692]: Server listening on :: port 22.
+
+#Dịch vụ sshd khởi động, lắng nghe trên IPv4 và IPv6 cổng 22.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:44:20.126483+07:00 elk-center sshd[10694]: Accepted password for root from 100.83.147.171 port 51209 ssh2
+2025-09-19T14:44:20.127786+07:00 elk-center sshd[10694]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:44:20.157447+07:00 elk-center systemd-logind[723]: New session 128 of user root.
+2025-09-19T14:44:20.174570+07:00 elk-center (systemd): pam_unix(systemd-user:session): session opened for user root(uid=0) by root(uid=0)
+
+#User root đăng nhập thành công bằng mật khẩu từ IP 100.83.147.171, port 51209.
+#Phiên được đánh số session 128.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:45:01.388894+07:00 elk-center CRON[10807]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:45:01.391152+07:00 elk-center CRON[10807]: pam_unix(cron:session): session closed for user root
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:54:38.716348+07:00 elk-center sshd[10694]: Received disconnect from 100.83.147.171 port 51209:11: FlowSshClient: Disconnect on user's request
+2025-09-19T14:54:38.716653+07:00 elk-center sshd[10694]: Disconnected from user root 100.83.147.171 port 51209
+2025-09-19T14:54:38.716718+07:00 elk-center sshd[10694]: pam_unix(sshd:session): session closed for user root
+2025-09-19T14:54:38.719954+07:00 elk-center systemd-logind[723]: Session 128 logged out. Waiting for processes to exit.
+2025-09-19T14:54:38.720584+07:00 elk-center systemd-logind[723]: Removed session 128.
+
+#User root logout, session 128 đóng lại.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:54:42.229424+07:00 elk-center sshd[10857]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=100.83.147.171  user=root
+2025-09-19T14:54:44.289610+07:00 elk-center sshd[10857]: Failed password for root from 100.83.147.171 port 51299 ssh2
+2025-09-19T14:54:44.447211+07:00 elk-center sshd[10857]: Received disconnect from 100.83.147.171 port 51299:11: FlowSshClient: Disconnect on user's request [preauth]
+2025-09-19T14:54:44.447915+07:00 elk-center sshd[10857]: Disconnected from authenticating user root 100.83.147.171 port 51299 [preauth]
+
+
+#đăng nhập thất bại (password sai) từ cùng IP 100.83.147.171 ngay sau khi logout.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:54:46.493379+07:00 elk-center sshd[10859]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=100.83.147.171  user=root
+2025-09-19T14:54:48.437960+07:00 elk-center sshd[10859]: Failed password for root from 100.83.147.171 port 51300 ssh2
+2025-09-19T14:54:48.712272+07:00 elk-center sshd[10859]: Received disconnect from 100.83.147.171 port 51300:11: FlowSshClient: Disconnect on user's request [preauth]
+2025-09-19T14:54:48.712393+07:00 elk-center sshd[10859]: Disconnected from authenticating user root 100.83.147.171 port 51300 [preauth]
+
+#đăng nhập thất bại (password sai) từ cùng IP 100.83.147.171 ngay sau khi logout.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:54:48.931130+07:00 elk-center (sd-pam): pam_unix(systemd-user:session): session closed for user root
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:54:55.760448+07:00 elk-center sshd[10862]: Accepted password for root from 100.83.147.171 port 51301 ssh2
+2025-09-19T14:54:55.761776+07:00 elk-center sshd[10862]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:54:55.786215+07:00 elk-center systemd-logind[723]: New session 131 of user root.
+2025-09-19T14:54:55.799980+07:00 elk-center (systemd): pam_unix(systemd-user:session): session opened for user root(uid=0) by root(uid=0)
+
+#User root lại đăng nhập thành công từ cùng IP, lần này là port 51301.
+#Tạo ra session 131.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:55:01.396396+07:00 elk-center CRON[10955]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:55:01.400243+07:00 elk-center CRON[10955]: pam_unix(cron:session): session closed for user root
+
+
+📌 Tóm tắt:
+14:44 → root đăng nhập thành công từ 100.83.147.171:51209 (session 128).
+14:54 → root logout, session 128 đóng.
+14:54–14:55 → có 2 lần thử login thất bại (password sai).
+14:55 → root lại login thành công từ 100.83.147.171:51301 (session 131).
+
+

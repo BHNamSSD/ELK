@@ -1,0 +1,110 @@
+🎯 Các regex cơ bản
+| Regex | Ý nghĩa                                         | Ví dụ khớp         |
+| ----- | ----------------------------------------------- | ------------------ |
+| `.`   | Bất kỳ ký tự nào (trừ xuống dòng)               | `a`, `1`, `!`      |
+| `\d`  | Chữ số (digit) = `[0-9]`                        | `0`, `123`         |
+| `\w`  | Ký tự chữ hoặc số + `_` (word) = `[A-Za-z0-9_]` | `user1`, `abc_123` |
+| `\s`  | Khoảng trắng (space, tab, xuống dòng)           | `" "`, `\t`, `\n`  |
+| `\D`  | Ngược lại với `\d` (không phải số)              | `a`, `-`           |
+| `\W`  | Ngược lại với `\w`                              | `#`, `@`, `-`      |
+| `\S`  | Ngược lại với `\s` (không phải khoảng trắng)    | `abc`, `123`       |
+
+
+🎯 Toán tử lặp
+| Regex   | Ý nghĩa                      | Ví dụ khớp                      |
+| ------- | ---------------------------- | ------------------------------- |
+| `*`     | Lặp lại **0 hoặc nhiều lần** | `a*` → `""`, `a`, `aaa`         |
+| `+`     | Lặp lại **1 hoặc nhiều lần** | `a+` → `a`, `aaa`               |
+| `?`     | Lặp lại **0 hoặc 1 lần**     | `colou?r` → `color`, `colour`   |
+| `{n}`   | Lặp đúng `n` lần             | `\d{4}` → `2025`                |
+| `{n,}`  | Lặp ít nhất `n` lần          | `\d{2,}` → `12`, `123`, `12345` |
+| `{n,m}` | Lặp từ `n` đến `m` lần       | `\d{2,4}` → `12`, `123`, `1234` |
+
+
+🎯 Nhóm và lựa chọn
+| Regex     | Ý nghĩa                  | Ví dụ khớp         |       |                           |
+| --------- | ------------------------ | ------------------ | ----- | ------------------------- |
+| `(abc)`   | Nhóm chuỗi để capture    | `foo(abc)bar`      |       |                           |
+| `(?:abc)` | Nhóm nhưng không capture | (tối ưu hiệu năng) |       |                           |
+| \`a       | b\`                      | “Hoặc”             | \`cat | dog`→ khớp`cat`hoặc`dog\` |
+
+
+🎯 Ký tự đặc biệt
+| Regex | Ý nghĩa          | Ví dụ                                                         |
+| ----- | ---------------- | ------------------------------------------------------------- |
+| `^`   | Bắt đầu dòng     | `^ERROR` → chuỗi bắt đầu bằng "ERROR"                         |
+| `$`   | Kết thúc dòng    | `end$` → chuỗi kết thúc bằng "end"                            |
+| `\b`  | Ranh giới từ     | `\bcat\b` → chỉ khớp "cat" riêng lẻ, không khớp "concatenate" |
+| `[]`  | Tập hợp ký tự    | `[abc]` → `a`, `b`, hoặc `c`                                  |
+| `[^]` | Phủ định tập hợp | `[^0-9]` → bất kỳ ký tự nào KHÔNG phải số                     |
+
+
+🎯 Một số regex thực tế hay dùng trong log
+| Regex                                            | Ý nghĩa                        | Ví dụ                      |                            |
+| ------------------------------------------------ | ------------------------------ | -------------------------- | -------------------------- |
+| `(\d{1,3}\.){3}\d{1,3}`                          | Địa chỉ IPv4                   | `192.168.1.1`              |                            |
+| `[A-Fa-f0-9:]+`                                  | Địa chỉ IPv6                   | `fe80::1ff:fe23:4567:890a` |                            |
+| `\d{4}-\d{2}-\d{2}`                              | Ngày `YYYY-MM-DD`              | `2025-09-20`               |                            |
+| `\d{2}:\d{2}:\d{2}`                              | Giờ `HH:MM:SS`                 | `14:55:30`                 |                            |
+| `[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}` | Email                          | `user@example.com`         |                            |
+| \`(http                                          | https)://\[^\s]+\`             | URL                        | `https://elk-center.local` |
+| `port (\d+)`                                     | Cổng                           | `port 22`                  |                            |
+| `from ([0-9.]+)`                                 | Địa chỉ IP trong log sshd      | `from 203.0.113.5`         |                            |
+| `Failed password for (\w+)`                      | Username khi đăng nhập sai SSH | `Failed password for root` |                            |
+
+
+
+🔹 Một số regex (grok pattern) có sẵn phổ biến
+📌 Cơ bản
+%{WORD} → khớp với 1 từ (chỉ ký tự chữ, không có khoảng trắng).
+%{DATA} → khớp mọi chuỗi (có thể rỗng).
+%{GREEDYDATA} → khớp mọi chuỗi dài nhất.
+%{NUMBER} → số (cả nguyên và thập phân).
+%{INT} → số nguyên.
+%{BASE10NUM} → số thập phân hệ 10.
+
+
+📌 Định dạng log chuẩn
+%{TIMESTAMP_ISO8601} → chuỗi thời gian kiểu 2025-09-20T16:19:34.066872+07:00.
+%{SYSLOGTIMESTAMP} → kiểu Sep 20 16:19:34.
+%{HOSTNAME} → tên host hoặc domain.
+%{IP} → địa chỉ IPv4 hoặc IPv6.
+%{SYSLOGPROG} → tên chương trình ghi log (ví dụ sshd, systemd-logind).
+%{SYSLOGHOST} → hostname trong syslog.
+%{SYSLOGBASE} → mẫu syslog đầy đủ (timestamp hostname program).
+
+
+📌 Dành cho syslog / SSH
+%{USER} → tên user (ví dụ root).
+%{TTY} → thiết bị terminal (ví dụ pts/2).
+%{POSINT} → số nguyên dương (hay dùng cho PID).
+%{PID} → tiến trình ([1234]).
+%{SYSLOG5424SD} → structured data theo RFC5424.
+
+
+
+| Grok Pattern        | Regex gốc (dịch nội bộ)                                                                      | Ý nghĩa                                              |                         |           |              |
+| ------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------- | --------- | ------------ |
+| `WORD`              | `\b\w+\b`                                                                                    | Một từ (a-z, A-Z, 0-9, `_`)                          |                         |           |              |
+| `DATA`              | `.*?`                                                                                        | Chuỗi bất kỳ, non-greedy                             |                         |           |              |
+| `GREEDYDATA`        | `.*`                                                                                         | Chuỗi bất kỳ, greedy                                 |                         |           |              |
+| `NUMBER`            | `(?:%{BASE10NUM})`                                                                           | Một số (nguyên hoặc thập phân)                       |                         |           |              |
+| `INT`               | `[+-]?(?:[0-9]+)`                                                                            | Số nguyên                                            |                         |           |              |
+| `BASE10NUM`         | `([+-]?(?:[0-9]+(?:\.[0-9]+)?))`                                                             | Số hệ 10 (cả thập phân)                              |                         |           |              |
+| `TIMESTAMP_ISO8601` | \`\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:.\d+)?(?\:Z                                          | \[+-]\d{2}:\d{2})?\`                                 | Thời gian chuẩn ISO8601 |           |              |
+| `SYSLOGTIMESTAMP`   | `%{MONTH} +%{MONTHDAY} %{TIME}`                                                              | Thời gian syslog (`Sep 20 16:19:34`)                 |                         |           |              |
+| `HOSTNAME`          | `\b(?:[0-9A-Za-z][0-9A-Za-z-]{0,62})(?:\.(?:[0-9A-Za-z][0-9A-Za-z-]{0,62}))*\b`              | Host hoặc domain                                     |                         |           |              |
+| `IP`                | \`(?:%{IPV6}                                                                                 | %{IPV4})\`                                           | IPv4 hoặc IPv6          |           |              |
+| `IPV4`              | \`(?:(?:25\[0-5]                                                                             | 2\[0-4]\d                                            | \[01]?\d\d?)(?:.(?!\$)  | \$)){4}\` | Địa chỉ IPv4 |
+| `IPV6`              | `[A-Fa-f0-9:]+`                                                                              | IPv6 (dạng cơ bản)                                   |                         |           |              |
+| `SYSLOGPROG`        | `[A-Za-z0-9_\-\/\.]+`                                                                        | Tên chương trình (vd: sshd, sudo, systemd)           |                         |           |              |
+| `USER`              | `[a-zA-Z0-9._-]+`                                                                            | Username                                             |                         |           |              |
+| `TTY`               | `tty\S*`                                                                                     | Thiết bị TTY (vd: pts/2)                             |                         |           |              |
+| `POSINT`            | `\b(?:[0-9]+)\b`                                                                             | Số nguyên dương                                      |                         |           |              |
+| `PID`               | `(?:\d+)`                                                                                    | Process ID                                           |                         |           |              |
+| `SYSLOGBASE`        | `%{SYSLOGTIMESTAMP:timestamp} %{HOSTNAME:host} %{SYSLOGPROG:program}(?:\[%{POSINT:pid}\])?:` | Khối syslog chuẩn (timestamp + host + program + pid) |                         |           |              |
+
+
+
+
+

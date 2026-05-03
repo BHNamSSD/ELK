@@ -1,0 +1,24 @@
+Analysis
+- Verified alert and reviewed web server logs
+- Confirmed high-frequency requests from IP 195.178.110.108
+- Detected access attempts to sensitive paths: /testing, /config
+- User-Agent: curl → indicates automated scanning
+- No signs of successful exploitation (no abnormal behavior, no compromise indicators)
+Threat Intelligence:
+- AbuseIPDB: 100% malicious confidence
+- VirusTotal: flagged by multiple vendors
+
+Action
+- Blocked IP 195.178.110.108 at Firewall
+- Verified no further traffic from the source after block
+
+Conclusion
+- Confirmed malicious reconnaissance activity (web scanning)
+- No impact to system (no exploitation observed)
+- Threat mitigated after IP block
+
+Recommendation
+- Monitor for similar activity from same subnet / ASN
+- Consider rate-limiting or bot protection on web server
+
+Status: Close

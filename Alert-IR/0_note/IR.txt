@@ -1,0 +1,645 @@
+{
+  "_index": ".internal.alerts-security.alerts-default-000004",
+  "_id": "2d493962671ea116a6e633501553e9227b769e51b1c340d4682089fd9f0025f5",
+  "_score": 1,
+  "_source": {
+    "kibana.alert.rule.execution.timestamp": "2026-03-19T19:21:48.105Z",
+    "kibana.alert.start": "2026-03-19T19:21:48.105Z",
+    "kibana.alert.last_detected": "2026-03-19T19:21:48.105Z",
+    "kibana.version": "8.19.4",
+    "kibana.alert.rule.parameters": {
+      "description": "[WEB] Detect Bot Scanning",
+      "risk_score": 40,
+      "severity": "medium",
+      "license": "",
+      "timeline_id": "053bbc9a-266b-4145-8612-6f441118ceaa",
+      "timeline_title": "[WEB] Detect Bot Scanning",
+      "meta": {
+        "kibana_siem_app_url": "https://192.168.1.254:5601/kibana/app/security"
+      },
+      "author": [],
+      "false_positives": [],
+      "from": "now-6m",
+      "rule_id": "651495c4-380b-455f-9f74-d413c768b6ae",
+      "max_signals": 100,
+      "risk_score_mapping": [],
+      "severity_mapping": [],
+      "threat": [],
+      "to": "now",
+      "references": [],
+      "version": 1,
+      "exceptions_list": [],
+      "immutable": false,
+      "rule_source": {
+        "type": "internal"
+      },
+      "related_integrations": [],
+      "required_fields": [],
+      "setup": "",
+      "type": "threshold",
+      "language": "kuery",
+      "data_view_id": "filebeat-*",
+      "query": "http.response.status_code : 444",
+      "filters": [],
+      "threshold": {
+        "field": [
+          "source.ip"
+        ],
+        "value": 150,
+        "cardinality": []
+      }
+    },
+    "kibana.alert.rule.category": "Threshold Rule",
+    "kibana.alert.rule.consumer": "siem",
+    "kibana.alert.rule.execution.uuid": "5201423f-2d4a-470a-89ae-45916e8b1c9e",
+    "kibana.alert.rule.name": "[WEB] Detect Bot Scanning",
+    "kibana.alert.rule.producer": "siem",
+    "kibana.alert.rule.revision": 0,
+    "kibana.alert.rule.rule_type_id": "siem.thresholdRule",
+    "kibana.alert.rule.uuid": "be857c50-4d90-48da-b8ef-e18028c40484",
+    "kibana.space_ids": [
+      "default"
+    ],
+    "kibana.alert.rule.tags": [
+      "Bot Scanning Medium"
+    ],
+    "@timestamp": "2026-03-19T19:21:48.089Z",
+    "source.ip": "93.123.109.246",
+    "event.kind": "signal",
+    "kibana.alert.original_time": "2026-03-19T19:21:16.000Z",
+    "kibana.alert.ancestors": [
+      {
+        "id": "b574efc2-a1ae-5030-b9d4-5c05cf64c53e",
+        "type": "event",
+        "index": "filebeat-*",
+        "depth": 0
+      }
+    ],
+    "kibana.alert.status": "active",
+    "kibana.alert.workflow_status": "open",
+    "kibana.alert.depth": 1,
+    "kibana.alert.reason": "event with source 93.123.109.246 created medium alert [WEB] Detect Bot Scanning.",
+    "kibana.alert.severity": "medium",
+    "kibana.alert.risk_score": 40,
+    "kibana.alert.rule.actions": [
+      {
+        "id": "7d7cdc95-76ac-4096-b355-c20ee942370e",
+        "params": {
+          "level": "info",
+          "message": "Rule {{context.rule.name}} generated {{state.signals_count}} alerts"
+        },
+        "action_type_id": ".server-log",
+        "uuid": "a204a903-03a1-4b01-82d7-163cc54fc433",
+        "frequency": {
+          "summary": true,
+          "notifyWhen": "onActiveAlert",
+          "throttle": null
+        },
+        "group": "default"
+      }
+    ],
+    "kibana.alert.rule.author": [],
+    "kibana.alert.rule.created_at": "2026-03-15T10:56:40.732Z",
+    "kibana.alert.rule.created_by": "bhnam",
+    "kibana.alert.rule.description": "[WEB] Detect Bot Scanning",
+    "kibana.alert.rule.enabled": true,
+    "kibana.alert.rule.exceptions_list": [],
+    "kibana.alert.rule.false_positives": [],
+    "kibana.alert.rule.from": "now-6m",
+    "kibana.alert.rule.immutable": false,
+    "kibana.alert.rule.interval": "5m",
+    "kibana.alert.rule.indices": [
+      "filebeat-*"
+    ],
+    "kibana.alert.rule.license": "",
+    "kibana.alert.rule.max_signals": 100,
+    "kibana.alert.rule.references": [],
+    "kibana.alert.rule.risk_score_mapping": [],
+    "kibana.alert.rule.rule_id": "651495c4-380b-455f-9f74-d413c768b6ae",
+    "kibana.alert.rule.severity_mapping": [],
+    "kibana.alert.rule.threat": [],
+    "kibana.alert.rule.timeline_id": "053bbc9a-266b-4145-8612-6f441118ceaa",
+    "kibana.alert.rule.timeline_title": "[WEB] Detect Bot Scanning",
+    "kibana.alert.rule.to": "now",
+    "kibana.alert.rule.type": "threshold",
+    "kibana.alert.rule.updated_at": "2026-03-15T10:56:40.732Z",
+    "kibana.alert.rule.updated_by": "bhnam",
+    "kibana.alert.rule.version": 1,
+    "kibana.alert.url": "https://kibana.bhnam-elk.com/kibana/app/security/alerts/redirect/2d493962671ea116a6e633501553e9227b769e51b1c340d4682089fd9f0025f5?index=.alerts-security.alerts-default&timestamp=2026-03-19T19:21:48.089Z",
+    "kibana.alert.uuid": "2d493962671ea116a6e633501553e9227b769e51b1c340d4682089fd9f0025f5",
+    "kibana.alert.workflow_tags": [],
+    "kibana.alert.workflow_assignee_ids": [],
+    "kibana.alert.rule.meta.kibana_siem_app_url": "https://192.168.1.254:5601/kibana/app/security",
+    "kibana.alert.rule.risk_score": 40,
+    "kibana.alert.rule.severity": "medium",
+    "kibana.alert.intended_timestamp": "2026-03-19T19:21:48.089Z",
+    "kibana.alert.rule.execution.type": "scheduled",
+    "kibana.alert.threshold_result": {
+      "count": 797,
+      "from": "2026-03-19T19:19:44.000Z",
+      "terms": [
+        {
+          "field": "source.ip",
+          "value": "93.123.109.246"
+        }
+      ]
+    }
+  },
+  "fields": {
+    "kibana.alert.severity": [
+      "medium"
+    ],
+    "kibana.alert.threshold_result.terms.value": [
+      "93.123.109.246"
+    ],
+    "kibana.alert.rule.updated_by": [
+      "bhnam"
+    ],
+    "signal.ancestors.depth": [
+      0
+    ],
+    "signal.threshold_result.terms.value": [
+      "93.123.109.246"
+    ],
+    "kibana.alert.rule.tags": [
+      "Bot Scanning Medium"
+    ],
+    "kibana.alert.rule.actions.uuid": [
+      "a204a903-03a1-4b01-82d7-163cc54fc433"
+    ],
+    "kibana.alert.reason.text": [
+      "event with source 93.123.109.246 created medium alert [WEB] Detect Bot Scanning."
+    ],
+    "kibana.alert.ancestors.depth": [
+      0
+    ],
+    "signal.rule.enabled": [
+      "true"
+    ],
+    "signal.rule.max_signals": [
+      100
+    ],
+    "kibana.alert.risk_score": [
+      40
+    ],
+    "signal.rule.updated_at": [
+      "2026-03-15T10:56:40.732Z"
+    ],
+    "source.ip": [
+      "93.123.109.246"
+    ],
+    "kibana.alert.rule.interval": [
+      "5m"
+    ],
+    "kibana.alert.rule.type": [
+      "threshold"
+    ],
+    "kibana.alert.start": [
+      "2026-03-19T19:21:48.105Z"
+    ],
+    "kibana.alert.rule.immutable": [
+      "false"
+    ],
+    "kibana.alert.rule.timeline_title": [
+      "[WEB] Detect Bot Scanning"
+    ],
+    "kibana.alert.rule.actions.action_type_id": [
+      ".server-log"
+    ],
+    "signal.rule.from": [
+      "now-6m"
+    ],
+    "kibana.alert.rule.enabled": [
+      "true"
+    ],
+    "kibana.alert.rule.version": [
+      "1"
+    ],
+    "kibana.alert.ancestors.type": [
+      "event"
+    ],
+    "kibana.alert.rule.actions.frequency.summary": [
+      true
+    ],
+    "signal.threshold_result.from": [
+      "2026-03-19T19:19:44.000Z"
+    ],
+    "kibana.alert.rule.actions.id": [
+      "7d7cdc95-76ac-4096-b355-c20ee942370e"
+    ],
+    "signal.ancestors.index": [
+      "filebeat-*"
+    ],
+    "kibana.alert.rule.timeline_id": [
+      "053bbc9a-266b-4145-8612-6f441118ceaa"
+    ],
+    "kibana.alert.rule.max_signals": [
+      100
+    ],
+    "kibana.alert.rule.risk_score": [
+      40
+    ],
+    "signal.threshold_result.count": [
+      797
+    ],
+    "kibana.alert.rule.consumer": [
+      "siem"
+    ],
+    "kibana.alert.rule.actions.params.message": [
+      "Rule {{context.rule.name}} generated {{state.signals_count}} alerts"
+    ],
+    "kibana.alert.rule.indices": [
+      "filebeat-*"
+    ],
+    "kibana.alert.rule.category": [
+      "Threshold Rule"
+    ],
+    "@timestamp": [
+      "2026-03-19T19:21:48.089Z"
+    ],
+    "signal.rule.updated_by": [
+      "bhnam"
+    ],
+    "kibana.alert.intended_timestamp": [
+      "2026-03-19T19:21:48.089Z"
+    ],
+    "kibana.alert.rule.severity": [
+      "medium"
+    ],
+    "kibana.alert.rule.execution.timestamp": [
+      "2026-03-19T19:21:48.105Z"
+    ],
+    "kibana.alert.rule.execution.uuid": [
+      "5201423f-2d4a-470a-89ae-45916e8b1c9e"
+    ],
+    "kibana.alert.uuid": [
+      "2d493962671ea116a6e633501553e9227b769e51b1c340d4682089fd9f0025f5"
+    ],
+    "kibana.alert.rule.meta.kibana_siem_app_url": [
+      "https://192.168.1.254:5601/kibana/app/security"
+    ],
+    "kibana.version": [
+      "8.19.4"
+    ],
+    "signal.rule.license": [
+      ""
+    ],
+    "signal.ancestors.type": [
+      "event"
+    ],
+    "kibana.alert.rule.rule_id": [
+      "651495c4-380b-455f-9f74-d413c768b6ae"
+    ],
+    "signal.rule.timeline_title": [
+      "[WEB] Detect Bot Scanning"
+    ],
+    "signal.rule.type": [
+      "threshold"
+    ],
+    "kibana.alert.ancestors.id": [
+      "b574efc2-a1ae-5030-b9d4-5c05cf64c53e"
+    ],
+    "kibana.alert.threshold_result.count": [
+      797
+    ],
+    "kibana.alert.url": [
+      "https://kibana.bhnam-elk.com/kibana/app/security/alerts/redirect/2d493962671ea116a6e633501553e9227b769e51b1c340d4682089fd9f0025f5?index=.alerts-security.alerts-default&timestamp=2026-03-19T19:21:48.089Z"
+    ],
+    "kibana.alert.rule.description": [
+      "[WEB] Detect Bot Scanning"
+    ],
+    "kibana.alert.rule.producer": [
+      "siem"
+    ],
+    "kibana.alert.rule.to": [
+      "now"
+    ],
+    "signal.rule.created_by": [
+      "bhnam"
+    ],
+    "signal.rule.interval": [
+      "5m"
+    ],
+    "kibana.alert.rule.created_by": [
+      "bhnam"
+    ],
+    "signal.rule.id": [
+      "be857c50-4d90-48da-b8ef-e18028c40484"
+    ],
+    "signal.reason": [
+      "event with source 93.123.109.246 created medium alert [WEB] Detect Bot Scanning."
+    ],
+    "signal.rule.risk_score": [
+      40
+    ],
+    "kibana.alert.rule.name": [
+      "[WEB] Detect Bot Scanning"
+    ],
+    "kibana.alert.threshold_result.terms.field": [
+      "source.ip"
+    ],
+    "kibana.alert.rule.actions.params.level": [
+      "info"
+    ],
+    "signal.status": [
+      "open"
+    ],
+    "event.kind": [
+      "signal"
+    ],
+    "signal.rule.created_at": [
+      "2026-03-15T10:56:40.732Z"
+    ],
+    "signal.rule.tags": [
+      "Bot Scanning Medium"
+    ],
+    "kibana.alert.workflow_status": [
+      "open"
+    ],
+    "kibana.alert.rule.actions.frequency.notifyWhen": [
+      "onActiveAlert"
+    ],
+    "kibana.alert.rule.uuid": [
+      "be857c50-4d90-48da-b8ef-e18028c40484"
+    ],
+    "kibana.alert.threshold_result.from": [
+      "2026-03-19T19:19:44.000Z"
+    ],
+    "kibana.alert.reason": [
+      "event with source 93.123.109.246 created medium alert [WEB] Detect Bot Scanning."
+    ],
+    "signal.threshold_result.terms.field": [
+      "source.ip"
+    ],
+    "signal.ancestors.id": [
+      "b574efc2-a1ae-5030-b9d4-5c05cf64c53e"
+    ],
+    "signal.original_time": [
+      "2026-03-19T19:21:16.000Z"
+    ],
+    "signal.rule.severity": [
+      "medium"
+    ],
+    "kibana.alert.rule.actions.group": [
+      "default"
+    ],
+    "kibana.alert.ancestors.index": [
+      "filebeat-*"
+    ],
+    "kibana.alert.depth": [
+      1
+    ],
+    "kibana.alert.rule.from": [
+      "now-6m"
+    ],
+    "kibana.alert.rule.parameters": [
+      {
+        "severity": "medium",
+        "max_signals": 100,
+        "rule_source": {
+          "type": "internal"
+        },
+        "data_view_id": "filebeat-*",
+        "risk_score": 40,
+        "query": "http.response.status_code : 444",
+        "description": "[WEB] Detect Bot Scanning",
+        "language": "kuery",
+        "threshold": {
+          "field": [
+            "source.ip"
+          ],
+          "value": 150,
+          "cardinality": []
+        },
+        "type": "threshold",
+        "version": 1,
+        "rule_id": "651495c4-380b-455f-9f74-d413c768b6ae",
+        "license": "",
+        "immutable": false,
+        "timeline_title": "[WEB] Detect Bot Scanning",
+        "meta": {
+          "kibana_siem_app_url": "https://192.168.1.254:5601/kibana/app/security"
+        },
+        "setup": "",
+        "from": "now-6m",
+        "to": "now",
+        "timeline_id": "053bbc9a-266b-4145-8612-6f441118ceaa"
+      }
+    ],
+    "kibana.alert.rule.revision": [
+      0
+    ],
+    "signal.rule.version": [
+      "1"
+    ],
+    "kibana.alert.status": [
+      "active"
+    ],
+    "kibana.alert.last_detected": [
+      "2026-03-19T19:21:48.105Z"
+    ],
+    "signal.depth": [
+      1
+    ],
+    "signal.rule.immutable": [
+      "false"
+    ],
+    "kibana.alert.rule.rule_type_id": [
+      "siem.thresholdRule"
+    ],
+    "signal.rule.name": [
+      "[WEB] Detect Bot Scanning"
+    ],
+    "signal.rule.rule_id": [
+      "651495c4-380b-455f-9f74-d413c768b6ae"
+    ],
+    "kibana.alert.rule.license": [
+      ""
+    ],
+    "kibana.alert.rule.updated_at": [
+      "2026-03-15T10:56:40.732Z"
+    ],
+    "signal.rule.description": [
+      "[WEB] Detect Bot Scanning"
+    ],
+    "signal.rule.timeline_id": [
+      "053bbc9a-266b-4145-8612-6f441118ceaa"
+    ],
+    "kibana.alert.rule.created_at": [
+      "2026-03-15T10:56:40.732Z"
+    ],
+    "signal.rule.to": [
+      "now"
+    ],
+    "kibana.space_ids": [
+      "default"
+    ],
+    "kibana.alert.rule.execution.type": [
+      "scheduled"
+    ],
+    "kibana.alert.original_time": [
+      "2026-03-19T19:21:16.000Z"
+    ]
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Khi bạn là SOC L1 và nhận alert kiểu này trong Kibana (rule: [WEB] Detect Bot Scanning), 
+thì cách xử lý cần đi theo playbook chuẩn chứ không phải xem qua rồi bỏ. Mình sẽ hướng dẫn đúng kiểu thực tế SOC 👇
+
+🔎 1. Xác định nhanh mức độ alert
+Từ ảnh của bạn:
+Source IP: 93.123.109.246
+Rule: Detect Bot Scanning
+Severity: low + medium
+Risk score: 20 → 40
+
+Số alert: 2
+👉 Nhận định ban đầu:
+Đây là scan bot / crawler / recon
+Chưa phải tấn công exploit trực tiếp
+Nhưng có thể là bước trinh sát trước tấn công
+
+
+🧭 2. Triage nhanh (5–10 phút đầu)
+✔ Check những thứ bắt buộc:
+a. IP này có lạ không?
+Internal hay external → ở đây là external
+Có nằm trong whitelist không? (CDN, Google bot, etc.)
+👉 Nếu không → nghi ngờ
+
+b. Tần suất & pattern
+Click vào alert → xem raw logs:
+Bạn cần check:
+Có scan nhiều URL không?
+Có request kiểu:
+/admin
+/config
+.env
+phpmyadmin
+wp-login.php
+👉 Nếu có → recon scan rõ ràng
+
+
+c. User-Agent
+Nếu là bot fake thường sẽ:
+random UA
+hoặc giả Googlebot
+👉 Dấu hiệu bot scan:
+UA không hợp lệ
+hoặc lặp lại nhiều request
+
+
+🧪 3. Pivot điều tra (quan trọng nhất)
+Trong Kibana bạn làm tiếp:
+🔁 Pivot theo IP:
+Search:
+source.ip: "93.123.109.246"
+Check:
+Có bao nhiêu request?
+Thời gian kéo dài bao lâu?
+Có escalation không?
+
+
+🔁 Pivot theo behavior:
+Search thêm:
+url.path: *admin* OR *login* OR *config*
+👉 Xem có:
+brute force?
+directory scan?
+exploit attempt?
+
+🔁 Check các alert khác liên quan:
+Có rule nào khác trigger không?
+SQLi
+RCE
+Brute force
+👉 Nếu có → severity tăng mạnh
+
+🧠 4. Phân loại (Classification)
+Sau khi xem xong, bạn phải kết luận:
+Trường hợp 1: Scan nhẹ (thường gặp)
+ít request
+không có payload độc
+👉 → Benign / Low threat
+→ Close hoặc monitor
+
+
+Trường hợp 2: Scan có pattern nguy hiểm
+scan nhiều endpoint nhạy cảm
+tần suất cao
+👉 → Suspicious
+→ escalate hoặc block IP
+
+Trường hợp 3: Scan + exploit
+có payload kiểu:
+' OR 1=1
+../../
+${jndi:ldap://...}
+👉 → Attack thật
+→ escalate lên SOC L2 ngay
+
+
+🛡️ 5. Hành động (Response)
+Nếu là L1, bạn KHÔNG tự xử lý sâu, nhưng sẽ:
+✔ Ghi nhận:
+IP
+thời gian
+số request
+loại scan
+
+✔ Đề xuất action:
+Block IP (Firewall / WAF / pfSense)
+Thêm vào blacklist
+
+✔ Escalate nếu:
+scan liên tục
+nhiều alert liên quan
+nghi ngờ exploit
+
+
+📝 6. Viết ticket (rất quan trọng)
+Ví dụ:
+Alert: [WEB] Detect Bot Scanning
+Source IP: 93.123.109.246
+Severity: Medium
+
+Summary:
+Detected scanning activity targeting web endpoints.
+
+Findings:
+- Multiple requests to sensitive paths (/config, /admin)
+- Repeated pattern within short timeframe
+- No confirmed exploitation observed
+
+Assessment:
+Suspicious reconnaissance activity
+
+Recommendation:
+- Monitor further activity
+- Consider blocking IP if persists
+
+
+
+
+
+
+
+
+
+
+
+
+

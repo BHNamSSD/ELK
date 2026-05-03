@@ -1,0 +1,24 @@
+Analysis
+- Verified alert and reviewed web server logs
+- Confirmed high-frequency requests from IP 104.28.196.52
+- Detected access attempts to sensitive paths: +/.env, /.env.+
+- User-Agent: Chrome → indicates automated scanning
+- No signs of successful exploitation (no abnormal behavior, no compromise indicators)
+Threat Intelligence:
+- AbuseIPDB: No reports found
+- VirusTotal: No detections from security vendors
+
+Action
+- Blocked IP 104.28.196.52 at Firewall
+- Verified no further traffic from the source after block
+
+Conclusion
+- Confirmed malicious reconnaissance activity (web scanning)
+- No impact to system (no exploitation observed)
+- Threat mitigated after IP block
+
+Recommendation
+- Monitor for similar activity from same subnet / ASN
+- Consider rate-limiting or bot protection on web server
+
+Status: Close

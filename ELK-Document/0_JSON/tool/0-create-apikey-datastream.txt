@@ -1,0 +1,51 @@
+
+POST /_security/api_key
+{
+    "name": "api-key-create-index",
+    "role_descriptors": {
+        "logstash_writer": {
+            "cluster": ["monitor","manage_index_templates","manage_ilm"],
+            "index": [
+                {
+                    "names": ["logs-sshd-*"],
+                    "privileges": ["auto_configure","write","create_index","create"]
+                }
+            ]
+        }
+    }
+}
+
+POST /_security/api_key
+{
+    "name": "logstash-nginx",
+    "role_descriptors": {
+        "logstash_writer": {
+            "cluster": ["monitor","manage_index_templates","manage_ilm"],
+            "index": [
+                {
+                    "names": ["logs-*", "filebeat-*"],
+                    "privileges": ["auto_configure","write","create_index","create"]
+                }
+            ]
+        }
+    }
+}
+
+
+POST /_security/api_key
+{
+    "name": "elasticsearch-nginx",
+    "role_descriptors": {
+        "logstash_writer": {
+            "cluster": ["monitor","manage_index_templates","manage_ilm","manage_ingest_pipelines"],
+            "index": [
+                {
+                    "names": ["logs-*", "filebeat-*"],
+                    "privileges": ["auto_configure","write","create_index","create","view_index_metadata"]
+                }
+            ]
+        }
+    }
+}
+
+-w2TOpsBqUglj9pbXPO0:Rt59T0yGUeh72oBMXID8QQ

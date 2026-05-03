@@ -1,0 +1,41 @@
+Title
+[Medium][WEB] Detect Bot Scanning - suspicious IP 152.32.254.155
+
+Summary
+Detected potential bot scanning activity from external IP 152.32.254.155 target web server on Mar 16, 2026
+
+Alert details
+- Timestamp: 2026-03-19T19:21:48.089Z
+- Source IP: 152.32.254.155
+- Destination: web server
+- Rule: [WEB] Detect Bot Scanning
+- Severity: Medium
+- Risk score: 40
+- Count: 797
+
+Investigation
+- Multiple HTTP requests observed in short timeframe
+- Access attemps sensitive paths (/)
+- Suspiciout User-agent detected: Other
+- No abnormal response codes (200) detected
+
+Impact assessment
+- No evidence of successful exploitation, Activity appears limited to reconnaissance
+
+Classtification
+- Malicious reconnaissance activity
+
+Recommend Actions
+- Block source IP at WAF/Firewall
+- Review web server logs for possible exploitation attempts
+- Monitor for repeated scanning from similar IP ranges
+
+Actions taken:
+- Checked source IP 152.32.254.155 on AbuseIPDB: 97% DDoS DNS Compromise, DDoS Attack
+- Checked source IP 152.32.254.155 on VirusTotal: 3/94 security vendors flagged this IP address as malicious
+
+Status
+- Escalated
+
+Escalation
+- Assign: SOC L2

@@ -1,0 +1,12 @@
+[WEB] 4xx Bot Scan (Low & Slow)
+
+Phát hiện hoạt động dò quét web chậm (stealth reconnaissance), trong đó: Một IP gửi nhiều request sai (4xx) Tần suất thấp để né rate-limit / WAF 
+Thường dùng bởi: Bot scan, Recon attacker,Tool fuzzing “low and slow”
+
+
+[WARNING] Web reconnaissance detected (Low & Slow)
+Rule: [WEB] 4xx Bot Scan (Low & Slow)
+Source IP: {{context.group}}
+4xx count: {{context.alert.threshold_result.count}}
+Time : 1 hours
+

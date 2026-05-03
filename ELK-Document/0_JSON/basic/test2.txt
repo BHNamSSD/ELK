@@ -1,0 +1,110 @@
+#B1
+#create index library
+PUT /library
+{
+  "mappings": {
+    "properties": {
+      "title": { "type": "text" },
+      "author": { "type" : "keyword" },
+      "year": { "type" : "integer" },
+      "tags": { "type" : "keyword" },
+      "rating": { "type" : "float" }
+    }
+  }
+}
+
+
+GET _resolve/index/library
+
+GET /library
+
+GET /library/_mapping
+
+GET /library/_stats
+
+GET /_cat/indices/library
+
+
+#B2
+#add data to library
+POST /library/_doc
+{ 
+  "title": "Elasticsearch Basics",
+  "author": "Alice",
+  "year": 2023,
+  "tags": ["search","intro"],
+  "rating": 4.5
+}
+
+POST /library/_doc
+{ 
+  "title": "Advanced Security",
+  "author": "Bob",
+  "year": 2021,
+  "tags": ["security","advanced"],
+  "rating": 4.8
+}
+
+POST /library/_doc
+{ 
+  "title": "Data Analytics with ES",
+  "author": "Alice",
+  "year": 2022,
+  "tags": ["analytics","bigdata"],
+  "rating": 4.2
+}
+
+#B3
+#search with keyword
+GET /library/_search
+{
+  "query": {"match": {"title": "ES"} }
+}
+
+GET /library/_search
+{
+  "query": {
+    "range": {
+      "year": {
+        "lte": 2022
+      }
+    }
+  }
+}
+
+GET /library/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {"term": {
+          "author": {
+            "value": "Alice"
+          }
+        }},
+        {"range": {
+          "rating": {
+            "gte": 4.3
+            
+          }
+        }}
+      ]
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

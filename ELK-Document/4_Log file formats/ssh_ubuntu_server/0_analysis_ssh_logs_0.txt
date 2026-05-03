@@ -1,0 +1,55 @@
+##############
+code logs ssh:
+##############
+2025-09-19T14:44:15.635275+07:00 elk-center sshd[10692]: Server listening on 0.0.0.0 port 22.
+2025-09-19T14:44:15.635495+07:00 elk-center sshd[10692]: Server listening on :: port 22.
+2025-09-19T14:44:20.126483+07:00 elk-center sshd[10694]: Accepted password for root from 100.83.147.171 port 51209 ssh2
+2025-09-19T14:44:20.127786+07:00 elk-center sshd[10694]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:44:20.157447+07:00 elk-center systemd-logind[723]: New session 128 of user root.
+2025-09-19T14:44:20.174570+07:00 elk-center (systemd): pam_unix(systemd-user:session): session opened for user root(uid=0) by root(uid=0)
+
+
+
+##############
+analysis logs:
+##############
+-----------------------------------------------------------------------------------------------------------------------------------------
+sshd[10692]: Server listening on 0.0.0.0 port 22.
+sshd[10692]: Server listening on :: port 22.
+
+#SSH daemon (sshd) khởi động và bắt đầu lắng nghe kết nối trên IPv4 (0.0.0.0) và IPv6 (::) tại cổng 22.
+#Đây là log khi service SSH vừa restart hoặc reload.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:44:20.126483+07:00 elk-center sshd[10694]: Accepted password for root from 100.83.147.171 port 51209 ssh2
+#Có một kết nối SSH thành công.
+#User: root
+#IP nguồn: 100.83.147.171
+#Port nguồn: 51209 (port ngẫu nhiên của client)
+#Phương thức: mật khẩu (password)
+#Protocol: SSH2
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+sshd[10694]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+#PAM xác thực đã mở một phiên làm việc (session) cho user root.
+#uid=0 xác nhận đây là root thực sự.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+systemd-logind[723]: New session 128 of user root.
+#systemd-logind tạo ra session ID = 128 để quản lý đăng nhập này.
+#Nghĩa là ngoài sshd, hệ thống còn tracking session cho việc quản lý tiến trình và quyền truy cập thiết bị.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+(systemd): pam_unix(systemd-user:session): session opened for user root(uid=0) by root(uid=0)
+#systemd mở session người dùng (user session) để chạy các tiến trình cho root.
+#Đây là bước cuối để root có môi trường shell đầy đủ sau khi login.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+Kết luận:
+Vào lúc 14:44:20, user root đã đăng nhập thành công qua SSH bằng mật khẩu từ IP 100.83.147.171.
+Hệ thống đã mở một phiên làm việc SSH (session 128) cho user này.
+
+
+
+
+

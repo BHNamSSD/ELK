@@ -1,0 +1,16 @@
+[DSM] Brute Force Login Attempts (Password)
+
+
+
+
+Phát hiện tấn công brute force đăng nhập DSM, khi: Một IP, Thực hiện nhiều lần đăng nhập thất bại, Trong thời gian ngắn
+
+
+[WARNING] DSM brute force login attempt detected
+
+Source IP: {{context.group}}
+Failed attempts: {{context.alert.threshold_result.count}}
+Auth method: password
+Service: DSM
+Possible credential brute force attack.
+

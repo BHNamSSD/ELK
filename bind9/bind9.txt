@@ -1,0 +1,26 @@
+Để gỡ hoàn toàn BIND9 khỏi Ubuntu Server, bạn làm như sau:
+
+✔️ 1. Dừng dịch vụ BIND9
+sudo systemctl stop bind9
+sudo systemctl disable bind9
+
+✔️ 2. Gỡ bỏ gói BIND9
+Gỡ bỏ chương trình nhưng giữ file cấu hình:
+sudo apt remove bind9
+
+
+Gỡ hoàn toàn, bao gồm file cấu hình:
+sudo apt purge bind9 bind9-utils bind9-doc
+
+
+✔️ 3. Xóa các thư mục dữ liệu còn sót
+sudo rm -rf /etc/bind
+sudo rm -rf /var/cache/bind
+sudo rm -rf /var/lib/bind
+
+✔️ 4. Xóa gói phụ không còn dùng
+sudo apt autoremove
+
+
+✔️ 5. Kiểm tra lại xem đã gỡ chưa
+dpkg -l | grep bind

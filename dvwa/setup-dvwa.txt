@@ -1,0 +1,131 @@
+Hướng dẫn **cài chi tiết Damn Vulnerable Web Application (DVWA) trên Nginx + PHP + MariaDB trên Ubuntu.
+Cách này nhẹ hơn Apache và phù hợp để bạn làm lab pentest nội bộ (như lab Kali + Metasploitable bạn đang xây).
+
+1. Cài các package cần thiết
+Cập nhật hệ thống:
+->sudo apt update
+->sudo apt upgrade -y
+
+Cài Nginx + PHP + MySQL:
+->sudo apt install nginx mariadb-server php php-fpm php-mysql php-gd php-curl php-mbstring php-xml php-zip git -y
+
+Kiểm tra:
+->nginx -v
+->php -v
+->mysql --version
+->systemctl status php8.3-fpm
+
+2. Tải DVWA từ GitHub
+->cd /var/www
+->sudo git clone https://github.com/digininja/DVWA.git
+
+Đổi quyền:
+->sudo chown -R www-data:www-data DVWA
+->sudo chmod -R 755 DVWA
+
+3. Tạo Database cho DVWA
+Đăng nhập MariaDB:
+->sudo mysql
+
+Tạo database:
+CREATE DATABASE dvwa;
+CREATE USER 'dvwa'@'localhost' IDENTIFIED BY 'abc12345@';
+GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+
+
+4. Cấu hình DVWA
+->cd /var/www/DVWA/config
+->sudo cp config.inc.php.dist config.inc.php
+
+Sửa file:
+->sudo nano config.inc.php
+$_DVWA['db_user'] = 'dvwa';
+$_DVWA['db_password'] = 'abc12345@';
+$_DVWA['db_database'] = 'dvwa';
+
+
+5. Cấu hình PHP
+Mở file:
+->sudo nano /etc/php/*/fpm/php.ini
+
+Sửa:
+allow_url_include = On
+allow_url_fopen = On
+
+Restart PHP:
+->sudo systemctl restart php*-fpm
+
+
+6. Cấu hình Nginx cho DVWA
+Tạo config:
+->sudo nano /etc/nginx/sites-available/dvwa
+
+Nội dung:
+server {
+    listen 80;
+
+    server_name dvwa.local;
+
+    root /var/www/DVWA;
+    index index.php index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
+
+7. Enable site
+->sudo ln -s /etc/nginx/sites-available/dvwa /etc/nginx/sites-enabled/
+
+Test nginx:
+->sudo nginx -t
+Restart:
+->sudo systemctl restart nginx
+
+
+8. Truy cập DVWA
+Mở trình duyệt:
+http://IP-server
+Hoặc:
+http://dvwa.local
+Đăng nhập mặc định:
+user: admin
+pass: password
+Sau đó bấm:
+Create / Reset Database
+
+9. Fix lỗi quyền (rất hay gặp)
+->sudo chmod -R 777 /var/www/DVWA/hackable/uploads
+->sudo chmod -R 777 /var/www/DVWA/config
+
+10. Bật mức độ vulnerability
+Login DVWA → chọn:
+DVWA Security
+Chọn:
+Low
+
+Nginx access log:
+/var/log/nginx/access.log
+Error log:
+/var/log/nginx/error.log
+
+Sau đó gửi log về server log:
+Elastic Stack
+Filebeat
+Syslog
+
+để phân tích attack từ:
+Kali Linux
+Metasploit
+Nmap

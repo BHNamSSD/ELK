@@ -1,0 +1,49 @@
+Title
+[Medium][WEB] Detect Bot Scanning - suspicious IP 44.245.100.195
+
+Summary
+Detected potential bot scanning activity from external IP 44.245.100.195 target web server on Apr 3, 2026
+
+Alert details
+- Timestamp: 2026-04-02T17:29:43.680Z
+- Source IP: 44.245.100.195
+- Destination: web server
+- Rule: [WEB] Detect Bot Scanning
+- Severity: Low
+- Risk score: 20
+- Count: 64
+
+Investigation
+- Multiple HTTP requests observed in short timeframe
+- Access attemps sensitive paths (/*/phpinfo.php, /*/.env)
+- Suspiciout User-agent detected: Chrome
+- No abnormal response codes (200) detected
+
+Impact assessment
+- No evidence of successful exploitation, Activity appears limited to reconnaissance
+
+Classtification
+- Malicious reconnaissance activity
+
+Recommend Actions
+- Block source IP at WAF/Firewall
+- Review web server logs for possible exploitation attempts
+- Monitor for repeated scanning from similar IP ranges
+
+Actions taken:
+- Checked source 44.245.100.195 on AbuseIPDB: No reports found
+- Checked source 44.245.100.195 on VirusTotal: No detections from security vendors
+
+- Observed multiple HTTP requests targeting sensitive files/paths
+
+- Reviewed web server logs:
+  + No clear evidence of successful exploitation
+  + Activity pattern suggests potential automated probing
+
+- Correlated activity timeframe and request patterns for anomalies
+
+Status
+- Escalated
+
+Escalation
+- Assign: SOC L2

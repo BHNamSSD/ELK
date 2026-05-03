@@ -1,0 +1,134 @@
+🔹 (1) Title / Alert Name
+Ngắn gọn + có ý nghĩa
+Format thường dùng:
+[Severity] Rule Name – Short Description
+📌 Ví dụ:
+[Medium] WEB Detect Bot Scanning – Suspicious IP Activity
+
+
+🔹 (2) Summary (Tóm tắt)
+👉 2–3 dòng trả lời:
+Cái gì xảy ra?
+Ở đâu?
+Khi nào?
+📌 Ví dụ:
+Detected potential bot scanning activity from external IP 93.123.109.246 targeting web server on Mar 20, 2026.
+
+🔹 (3) Alert Details (Chi tiết alert)
+👉 Lấy từ SIEM (rất quan trọng)
+Bao gồm:
+Timestamp
+Source IP
+Destination IP / host
+Rule name
+Severity
+Risk score
+📌 Ví dụ:
+Timestamp: 2026-03-20 02:21:48
+Source IP: 93.123.109.246
+Destination: Web Server
+Rule: [WEB] Detect Bot Scanning
+Severity: Medium
+Risk Score: 40
+
+🔹 (4) Investigation / Findings (Kết quả phân tích)
+👉 Đây là phần SOC L1 phải làm
+Trả lời:
+Có gì bất thường?
+Pattern ra sao?
+📌 Ví dụ:
+- Multiple HTTP requests observed within short timeframe
+- Targeted sensitive paths such as /admin and /config
+- User-Agent appears non-legitimate
+- No exploit payload identified
+
+
+🔹 (5) Impact Assessment (Đánh giá ảnh hưởng)
+👉 Quan trọng trong doanh nghiệp
+📌 Ví dụ:
+No evidence of successful exploitation or system compromise observed.
+Activity limited to reconnaissance scanning.
+
+🔹 (6) Classification (Phân loại)
+👉 Bắt buộc phải có
+True Positive / False Positive
+Benign / Suspicious / Malicious
+📌 Ví dụ:
+Classification: Suspicious Activity (Reconnaissance)
+
+🔹 (7) Recommended Actions (Đề xuất)
+👉 SOC L1 KHÔNG cần làm hết, nhưng phải đề xuất
+📌 Ví dụ:
+- Monitor for further activity from the same IP
+- Consider blocking IP at firewall if activity persists
+- Review WAF rules for improved detection
+
+🔹 (8) Actions Taken (Nếu có)
+👉 Nếu bạn đã làm gì đó
+📌 Ví dụ:
+No immediate action taken. Monitoring initiated.
+
+🔹 (9) Status
+Open
+In Progress
+Escalated
+Closed
+📌 Ví dụ:
+Status: Closed (No Threat Identified)
+
+🔹 (10) Assignee / Escalation
+👉 Giao cho ai
+📌 Ví dụ:
+Assigned to: SOC L1
+Escalation: Not required
+
+
+🧠 2. Template chuẩn (copy dùng luôn)
+Title:
+[Medium] WEB Detect Bot Scanning – Suspicious IP Activity
+
+Summary:
+Detected potential bot scanning activity from external IP 93.123.109.246 targeting web server on Mar 20, 2026.
+
+Alert Details:
+- Timestamp: 2026-03-20 02:21:48
+- Source IP: 93.123.109.246
+- Destination: Web Server
+- Rule: [WEB] Detect Bot Scanning
+- Severity: Medium
+- Risk Score: 40
+
+Investigation / Findings:
+- Multiple HTTP requests observed in short timeframe
+- Access attempts to sensitive paths (/admin, /config)
+- Suspicious User-Agent detected
+- No exploit payload identified
+
+Impact Assessment:
+No evidence of successful exploitation. Activity appears limited to reconnaissance.
+
+Classification:
+Suspicious Activity (Reconnaissance)
+
+Recommended Actions:
+- Monitor activity from this IP
+- Consider blocking IP if repeated behavior observed
+- Tune detection rules if necessary
+
+Actions Taken:
+No immediate action taken
+
+Status:
+Closed
+
+Assignee:
+SOC L1
+
+
+
+
+
+
+
+
+

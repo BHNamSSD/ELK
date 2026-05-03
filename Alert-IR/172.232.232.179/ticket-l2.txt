@@ -1,0 +1,24 @@
+Analysis
+- Verified alert and reviewed web server logs
+- Confirmed high-frequency requests from IP 172.232.232.179
+- Detected access attempts to sensitive paths: /wordpress, /wp-admin, /update
+- User-Agent: - → indicates automated scanning
+- No signs of successful exploitation (no abnormal behavior, no compromise indicators)
+Threat Intelligence:
+- AbuseIPDB: 72%% malicious confidence
+- VirusTotal: have 2 vendoers flagged can be inferred, this ip address was recently activated.
+
+Action
+- Blocked IP 185.177.72.22 at Firewall
+- Verified no further traffic from the source after block
+
+Conclusion
+- Confirmed malicious reconnaissance activity (web scanning)
+- No impact to system (no exploitation observed)
+- Threat mitigated after IP block
+
+Recommendation
+- Monitor for similar activity from same subnet / ASN
+- Consider rate-limiting or bot protection on web server
+
+Status: Close

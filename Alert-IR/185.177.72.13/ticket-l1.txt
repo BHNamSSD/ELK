@@ -1,0 +1,86 @@
+Title
+[Medium][WEB] Detect Bot Scanning - suspicious IP 185.177.72.13
+
+Summary
+Detected potential bot scanning activity from external IP 185.177.72.13 target web server on Mar 27, 2026 @ 04:44:37.733
+
+Alert details
+- Timestamp: 2026-03-26T21:44:37.733Z
+- Source IP: 185.177.72.13
+- Destination: web server
+- Rule: [WEB] Detect Bot Scanning
+- Severity: Medium
+- Risk score: 40
+- Count: 264
+
+Investigation
+- Multiple HTTP requests observed in short timeframe
+- Access attemps sensitive paths (/blogs/.env, /app/config/.env, *.env)
+- Suspiciout User-agent detected: most Other
+- No abnormal response codes (200) detected
+
+Impact assessment
+- No evidence of successful exploitation, Activity appears limited to reconnaissance
+
+Classtification
+- Malicious reconnaissance activity
+
+Recommend Actions
+- Block source IP at WAF/Firewall
+- Review web server logs for possible exploitation attempts
+- Monitor for repeated scanning from similar IP ranges
+
+
+Actions taken
+- Check IP 185.177.72.13 on AbuseIPDB: 100% with categries Bad Web Bot, Web App Attack
+- Check IP 185.177.72.13 on Virus Total: 16/94 security vendors flagged this IP address as malicious
+
+Status
+- Escalated
+
+Escalation
+- Assign: SOC L2
+
+
+
+Title
+[LOW][WEB] Detect Bot Scanning - suspicious IP 185.177.72.13
+
+Summary
+Detected potential bot scanning activity from external IP 185.177.72.13 target web server on Mar 27, 2026 @ 04:44:40.707
+
+Alert details
+- Timestamp: 2026-03-26T21:44:40.707Z
+- Source IP: 185.177.72.13
+- Destination: web server
+- Rule: [WEB] Detect Bot Scanning
+- Severity: Low
+- Risk score: 20
+- Count: 264
+
+Investigation
+- Multiple HTTP requests observed in short timeframe
+- Access attemps sensitive paths (/blogs/.env, /app/config/.env, *.env)
+- Suspiciout User-agent detected: 
+- No abnormal response codes (200) detected
+
+Impact assessment
+- No evidence of successful exploitation, Activity appears limited to reconnaissance
+
+Classtification
+- Malicious reconnaissance activity
+
+Recommend Actions
+- Block source IP at WAF/Firewall
+- Review web server logs for possible exploitation attempts
+- Monitor for repeated scanning from similar IP ranges
+
+Actions taken
+- Check IP 185.177.72.13 on AbuseIPDB: 100% with categries Bad Web Bot, Web App Attack
+- Check IP 185.177.72.13 on Virus Total: 16/94 security vendors flagged this IP address as malicious
+
+Status
+- Escalated
+
+Escalation
+- Assign: SOC L2

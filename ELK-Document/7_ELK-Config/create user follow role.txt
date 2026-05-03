@@ -1,0 +1,153 @@
+Trong hệ thống Elastic Stack (ELK), việc phân quyền cho SOC L1 và SOC L2 rất quan trọng để đảm bảo đúng trách nhiệm, 
+tránh thao tác nhầm và đảm bảo bảo mật.
+Mình sẽ giải thích theo kiểu thực tế SOC nhé (đúng mindset vận hành doanh nghiệp).
+
+
+🧑‍💻 1. SOC L1 trong ELK có quyền gì?
+👉 SOC L1 = Monitoring + Triage (xử lý bước đầu)
+=> Chỉ đọc + xử lý alert cơ bản, KHÔNG được thay đổi hệ thống
+
+🔹 Quyền nên có:
+1. Xem log & tìm kiếm
+Truy cập Discover
+Query log (KQL / Lucene)
+Xem raw log (event.original)
+Filter theo IP, URL, rule...
+👉 Role:
+read index (logs-, filebeat-, winlogbeat-*...)
+
+
+2. Xem & xử lý alert (SIEM)
+Truy cập Security → Alerts
+Xem alert details
+Thêm note (comment)
+Gán assignee
+Đổi status:
+open → acknowledged → closed
+👉 Role:
+read + write trên alert index (.alerts-security.*)
+
+
+3. Dashboard & Visualization
+Xem dashboard SOC
+KHÔNG chỉnh sửa dashboard
+👉 Role:
+read trên saved objects
+
+
+4. Timeline (SIEM investigation nhẹ)
+Tạo timeline đơn giản
+Pivot từ alert → log
+
+
+❌ KHÔNG nên có:
+Tạo / sửa rule detection
+Sửa pipeline Logstash
+Xoá index
+Quản lý user / role
+Dev tools (Console)
+
+
+
+🧠 2. SOC L2 trong ELK có quyền gì?
+👉 SOC L2 = Investigation + Tuning + Response
+
+🔹 Ngoài quyền của L1, L2 có thêm:
+1. Tạo & chỉnh sửa Detection Rule
+Vào Security → Rules
+Tạo rule:
+threshold
+query
+EQL
+👉 Ví dụ:
+Detect brute force
+Detect scan
+Detect SQLi
+
+2. Tuning alert
+Disable rule noisy
+Adjust threshold
+Add exception
+
+3. Deep investigation
+Advanced Timeline
+Correlate multi logs
+Pivot:
+IP → host → user → process
+
+4. Case management
+Tạo case
+Link alert vào case
+Viết investigation note
+
+5. Dev Tools (có thể cho)
+Query Elasticsearch trực tiếp (JSON DSL)
+
+6. Dashboard chỉnh sửa
+Sửa dashboard SOC
+Tạo visualization mới
+
+❌ KHÔNG nên có (tuỳ môi trường):
+Full admin cluster
+Xoá index production
+
+
+
+🔐 3. Mapping Role trong ELK (thực tế)
+🟢 Role SOC_L1
+Cluster privileges:
+- monitor
+
+Index privileges:
+- read: logs-*
+- read: filebeat-*
+- read: winlogbeat-*
+- read/write: .alerts-security.*
+
+Kibana privileges:
+- Discover: read
+- Dashboard: read
+- Security: read + write (alerts only)
+
+
+🟡 Role SOC_L2
+Cluster privileges:
+- monitor
+
+Index privileges:
+- read/write: logs-*
+- read/write: .alerts-security.*
+- read/write: .kibana*
+
+Kibana privileges:
+- Discover: all
+- Dashboard: all
+- Security: all (rules, alerts, cases)
+- Dev Tools: access
+
+
+🎯 4. Mapping theo thực tế SOC workflow
+| Action            | L1 | L2 |
+| ----------------- | -- | -- |
+| Xem log           | ✅  | ✅  |
+| Xem alert         | ✅  | ✅  |
+| Close alert       | ✅  | ✅  |
+| Viết note         | ✅  | ✅  |
+| Tạo rule          | ❌  | ✅  |
+| Tuning rule       | ❌  | ✅  |
+| Investigation sâu | ❌  | ✅  |
+| Quản lý hệ thống  | ❌  | ❌  |
+
+
+
+⚠️ 5. Lỗi phổ biến khi phân quyền
+❌ Cho L1 quyền chỉnh rule → dễ phá detection
+❌ Cho L1 Dev Tools → nguy cơ query sai
+❌ Không giới hạn index → lộ data nhạy cảm
+❌ Không phân quyền alert riêng → không close được alert
+
+
+
+
+
+

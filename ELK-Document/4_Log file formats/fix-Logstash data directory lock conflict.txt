@@ -1,0 +1,45 @@
+Tên lỗi trong log:
+Logstash could not be started because there is already another instance using the configured data directory
+
+
+
+Nguyên nhân:
+Mỗi instance Logstash sử dụng một thư mục dữ liệu (path.data) để lưu trạng thái pipeline, sincedb, queue, vv.
+Logstash không cho phép nhiều instance cùng truy cập một thư mục data tại cùng thời điểm.
+Nếu một instance đang chạy, bất kỳ instance nào khác cố dùng cùng path.data sẽ bị FATAL error.
+
+Đặc điểm:
+Không liên quan tới lỗi cấu hình pipeline hay pipeline.yml.
+Là lỗi runtime, xảy ra khi khởi tạo pipeline thực sự (không xảy ra khi chỉ test config).
+
+Thường xuất hiện khi:
+Một instance Logstash khác đang chạy.
+Thư mục path.data còn file lock từ instance cũ bị crash.
+
+Cách gọi khác trong cộng đồng:
+Data directory lock error
+Path.data in use error
+Multiple Logstash instances conflict
+
+
+#=======================
+FIX
+#=======================
+1️ Dừng hoặc kill instance Logstash đang chiếm data directory
+Nếu bạn muốn chạy pipeline mới với thư mục data mặc định, cần chắc chắn không còn instance nào khác đang chạy:
+
+Kiểm tra process Logstash
+ps aux | grep logstash
+
+Dừng service Logstash nếu đang chạy:
+sudo systemctl stop logstash
+
+Kill process còn lại nếu service đã stop mà vẫn còn:
+sudo kill -9 <PID>
+
+Kiểm tra lại:
+ps aux | grep logstash
+
+Khi không còn process nào → chạy pipeline mới bình thường:
+
+

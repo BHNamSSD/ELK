@@ -1,0 +1,65 @@
+Ok, bạn đang ở vai trò SOC L2, và bạn nhận được note từ SOC L1 kiểu này:
+
+Suspicious scanning detected from 93.123.109.246
+Multiple requests to sensitive paths ()
+Recommend L2 further investigation
+
+Dưới đây là quy trình SOC L2 xử lý tiếp theo theo chuẩn doanh nghiệp:
+1. Xác nhận và thu thập thông tin
+Xác nhận alert từ L1: kiểm tra log gốc, Kibana, hoặc SIEM để đảm bảo L1 không nhầm lẫn.
+Thu thập thông tin chi tiết:
+IP nguồn: 93.123.109.246
+Thời gian, user-agent, các request tới paths nhạy cảm
+Loại HTTP request (GET/POST)
+Response code trả về (200, 403, 404, …)
+Nếu có thể, lưu lại full request headers & body.
+
+2. Phân loại và đánh giá mức độ rủi ro
+Kiểm tra pattern tấn công:
+Đây là scanning, có thể là reconnaissance, thử khai thác lỗ hổng.
+Số lượng request, tần suất, và mục tiêu sẽ giúp xác định mức rủi ro.
+So sánh với threat intel: IP này có bị blacklisted hay liên quan malware/botnet không?
+
+
+3. Thực hiện điều tra nâng cao
+Nếu có access, trích xuất log từ Web server hoặc WAF để kiểm tra:
+Có cố gắng khai thác lỗ hổng (SQLi, RCE, LFI, …) không
+Paths nào bị target
+Nếu hệ thống có IDS/IPS, check xem đã block hay chưa.
+Kiểm tra trong SIEM/ELK xem có hoạt động tương tự từ IP này ở các host khác không.
+
+
+4. Phản ứng & khuyến nghị
+Tạm thời chặn IP trên firewall/WAF nếu cần thiết (tùy mức độ rủi ro).
+Cập nhật alert trong ticket:
+Thêm thông tin L2 điều tra
+Ghi nhận evidence (log, screenshot Kibana, …)
+Nếu nghi ngờ tấn công thực sự, escalate cho team Incident Response.
+
+5. Escalate / Close
+Nếu L2 xác nhận là scanning không nguy hiểm → ghi chú, close ticket.
+Nếu rủi ro cao hoặc có dấu hiệu khai thác → escalate lên Incident Response Team.
+
+
+6. Document lại
+Ghi đầy đủ trong ticket:
+Steps đã kiểm tra
+Evidence log
+Kết luận đánh giá
+Recommendation cho SOC/IR team
+
+
+💡 Tip: SOC L2 không chỉ “xem log” mà còn phân tích pattern, xác định rủi ro và quyết định hành động, khác với SOC L1 chủ yếu chỉ phát hiện alert.
+
+
+
+
+
+
+
+
+
+
+
+
+

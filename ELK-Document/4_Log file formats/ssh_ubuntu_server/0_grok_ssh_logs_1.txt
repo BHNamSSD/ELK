@@ -1,0 +1,488 @@
+###########
+code logs:
+###########
+2025-09-19T14:44:15.635275+07:00 elk-center sshd[10692]: Server listening on 0.0.0.0 port 22.
+2025-09-19T14:44:15.635495+07:00 elk-center sshd[10692]: Server listening on :: port 22.
+2025-09-19T14:44:20.126483+07:00 elk-center sshd[10694]: Accepted password for root from 100.83.147.171 port 51209 ssh2
+2025-09-19T14:44:20.127786+07:00 elk-center sshd[10694]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:44:20.157447+07:00 elk-center systemd-logind[723]: New session 128 of user root.
+2025-09-19T14:44:20.174570+07:00 elk-center (systemd): pam_unix(systemd-user:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:45:01.388894+07:00 elk-center CRON[10807]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:45:01.391152+07:00 elk-center CRON[10807]: pam_unix(cron:session): session closed for user root
+2025-09-19T14:54:38.716348+07:00 elk-center sshd[10694]: Received disconnect from 100.83.147.171 port 51209:11: FlowSshClient: Disconnect on user's request
+2025-09-19T14:54:38.716653+07:00 elk-center sshd[10694]: Disconnected from user root 100.83.147.171 port 51209
+2025-09-19T14:54:38.716718+07:00 elk-center sshd[10694]: pam_unix(sshd:session): session closed for user root
+2025-09-19T14:54:38.719954+07:00 elk-center systemd-logind[723]: Session 128 logged out. Waiting for processes to exit.
+2025-09-19T14:54:38.720584+07:00 elk-center systemd-logind[723]: Removed session 128.
+2025-09-19T14:54:42.229424+07:00 elk-center sshd[10857]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=100.83.147.171  user=root
+2025-09-19T14:54:44.289610+07:00 elk-center sshd[10857]: Failed password for root from 100.83.147.171 port 51299 ssh2
+2025-09-19T14:54:44.447211+07:00 elk-center sshd[10857]: Received disconnect from 100.83.147.171 port 51299:11: FlowSshClient: Disconnect on user's request [preauth]
+2025-09-19T14:54:44.447915+07:00 elk-center sshd[10857]: Disconnected from authenticating user root 100.83.147.171 port 51299 [preauth]
+2025-09-19T14:54:46.493379+07:00 elk-center sshd[10859]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=100.83.147.171  user=root
+2025-09-19T14:54:48.437960+07:00 elk-center sshd[10859]: Failed password for root from 100.83.147.171 port 51300 ssh2
+2025-09-19T14:54:48.712272+07:00 elk-center sshd[10859]: Received disconnect from 100.83.147.171 port 51300:11: FlowSshClient: Disconnect on user's request [preauth]
+2025-09-19T14:54:48.712393+07:00 elk-center sshd[10859]: Disconnected from authenticating user root 100.83.147.171 port 51300 [preauth]
+2025-09-19T14:54:48.931130+07:00 elk-center (sd-pam): pam_unix(systemd-user:session): session closed for user root
+2025-09-19T14:54:55.760448+07:00 elk-center sshd[10862]: Accepted password for root from 100.83.147.171 port 51301 ssh2
+2025-09-19T14:54:55.761776+07:00 elk-center sshd[10862]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:54:55.786215+07:00 elk-center systemd-logind[723]: New session 131 of user root.
+2025-09-19T14:54:55.799980+07:00 elk-center (systemd): pam_unix(systemd-user:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:55:01.396396+07:00 elk-center CRON[10955]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:55:01.400243+07:00 elk-center CRON[10955]: pam_unix(cron:session): session closed for user root
+
+###############
+analysis logs:
+###############
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:44:15.635275+07:00 elk-center sshd[10692]: Server listening on 0.0.0.0 port 22.
+2025-09-19T14:44:15.635495+07:00 elk-center sshd[10692]: Server listening on :: port 22.
+
+#Dịch vụ sshd khởi động, lắng nghe trên IPv4 và IPv6 cổng 22.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:44:20.126483+07:00 elk-center sshd[10694]: Accepted password for root from 100.83.147.171 port 51209 ssh2
+2025-09-19T14:44:20.127786+07:00 elk-center sshd[10694]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:44:20.157447+07:00 elk-center systemd-logind[723]: New session 128 of user root.
+2025-09-19T14:44:20.174570+07:00 elk-center (systemd): pam_unix(systemd-user:session): session opened for user root(uid=0) by root(uid=0)
+
+#User root đăng nhập thành công bằng mật khẩu từ IP 100.83.147.171, port 51209.
+#Phiên được đánh số session 128.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:45:01.388894+07:00 elk-center CRON[10807]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:45:01.391152+07:00 elk-center CRON[10807]: pam_unix(cron:session): session closed for user root
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:54:38.716348+07:00 elk-center sshd[10694]: Received disconnect from 100.83.147.171 port 51209:11: FlowSshClient: Disconnect on user's request
+2025-09-19T14:54:38.716653+07:00 elk-center sshd[10694]: Disconnected from user root 100.83.147.171 port 51209
+2025-09-19T14:54:38.716718+07:00 elk-center sshd[10694]: pam_unix(sshd:session): session closed for user root
+2025-09-19T14:54:38.719954+07:00 elk-center systemd-logind[723]: Session 128 logged out. Waiting for processes to exit.
+2025-09-19T14:54:38.720584+07:00 elk-center systemd-logind[723]: Removed session 128.
+
+#User root logout, session 128 đóng lại.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:54:42.229424+07:00 elk-center sshd[10857]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=100.83.147.171  user=root
+2025-09-19T14:54:44.289610+07:00 elk-center sshd[10857]: Failed password for root from 100.83.147.171 port 51299 ssh2
+2025-09-19T14:54:44.447211+07:00 elk-center sshd[10857]: Received disconnect from 100.83.147.171 port 51299:11: FlowSshClient: Disconnect on user's request [preauth]
+2025-09-19T14:54:44.447915+07:00 elk-center sshd[10857]: Disconnected from authenticating user root 100.83.147.171 port 51299 [preauth]
+
+
+#đăng nhập thất bại (password sai) từ cùng IP 100.83.147.171 ngay sau khi logout.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:54:46.493379+07:00 elk-center sshd[10859]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=100.83.147.171  user=root
+2025-09-19T14:54:48.437960+07:00 elk-center sshd[10859]: Failed password for root from 100.83.147.171 port 51300 ssh2
+2025-09-19T14:54:48.712272+07:00 elk-center sshd[10859]: Received disconnect from 100.83.147.171 port 51300:11: FlowSshClient: Disconnect on user's request [preauth]
+2025-09-19T14:54:48.712393+07:00 elk-center sshd[10859]: Disconnected from authenticating user root 100.83.147.171 port 51300 [preauth]
+
+#đăng nhập thất bại (password sai) từ cùng IP 100.83.147.171 ngay sau khi logout.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:54:48.931130+07:00 elk-center (sd-pam): pam_unix(systemd-user:session): session closed for user root
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:54:55.760448+07:00 elk-center sshd[10862]: Accepted password for root from 100.83.147.171 port 51301 ssh2
+2025-09-19T14:54:55.761776+07:00 elk-center sshd[10862]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:54:55.786215+07:00 elk-center systemd-logind[723]: New session 131 of user root.
+2025-09-19T14:54:55.799980+07:00 elk-center (systemd): pam_unix(systemd-user:session): session opened for user root(uid=0) by root(uid=0)
+
+#User root lại đăng nhập thành công từ cùng IP, lần này là port 51301.
+#Tạo ra session 131.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:55:01.396396+07:00 elk-center CRON[10955]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:55:01.400243+07:00 elk-center CRON[10955]: pam_unix(cron:session): session closed for user root
+
+
+📌 Tóm tắt:
+14:44 → root đăng nhập thành công từ 100.83.147.171:51209 (session 128).
+14:54 → root logout, session 128 đóng.
+14:54–14:55 → có 2 lần thử login thất bại (password sai).
+14:55 → root lại login thành công từ 100.83.147.171:51301 (session 131).
+
+
+
+###############
+grok logs:
+###############
+filter {
+  grok {
+    match => {
+      "message" => "%{TIMESTAMP_ISO8601:timestamp} %{HOSTNAME:hostname} %{WORD:program}(?:\[%{NUMBER:pid}\])?: %{GREEDYDATA:msg}"
+    }
+  }
+}
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:44:20.126483+07:00 elk-center sshd[10694]: Accepted password for root from 100.83.147.171 port 51209 ssh2
+filter {
+	grok {
+		match {
+			"msg" => "Accepted password for %{USERNAME:ssh_user_success} from ${IP:src_ip_success} port %{NUMBER:src_port_success} ssh2"
+		}
+	}
+}
+
+Kết quả parse được:
+ssh_user_success = root
+src_ip_success = 100.83.147.171
+src_port_success = 51209
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:44:20.127786+07:00 elk-center sshd[10694]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:44:20.157447+07:00 elk-center systemd-logind[723]: New session 128 of user root.
+2025-09-19T14:44:20.174570+07:00 elk-center (systemd): pam_unix(systemd-user:session): session opened for user root(uid=0) by root(uid=0)
+
+#User root đăng nhập thành công bằng mật khẩu từ IP 100.83.147.171, port 51209.
+#Phiên được đánh số session 128.
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:54:38.716348+07:00 elk-center sshd[10694]: Received disconnect from 100.83.147.171 port 51209:11: FlowSshClient: Disconnect on user's request
+2025-09-19T14:54:38.716653+07:00 elk-center sshd[10694]: Disconnected from user root 100.83.147.171 port 51209
+2025-09-19T14:54:38.716718+07:00 elk-center sshd[10694]: pam_unix(sshd:session): session closed for user root
+2025-09-19T14:54:38.719954+07:00 elk-center systemd-logind[723]: Session 128 logged out. Waiting for processes to exit.
+2025-09-19T14:54:38.720584+07:00 elk-center systemd-logind[723]: Removed session 128.
+
+#User root logout, session 128 đóng lại.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:54:42.229424+07:00 elk-center sshd[10857]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=100.83.147.171  user=root
+
+2025-09-19T14:54:44.289610+07:00 elk-center sshd[10857]: Failed password for root from 100.83.147.171 port 51299 ssh2
+filter {
+	grok {
+		match {
+			"msg" => "Failed password for %{USERNAME:ssh_user_fail} form %{IP:src_ip_fail} port %{NUMBER:src_port_fail} ssh2"
+		}
+	}
+}
+
+2025-09-19T14:54:44.447211+07:00 elk-center sshd[10857]: Received disconnect from 100.83.147.171 port 51299:11: FlowSshClient: Disconnect on user's request [preauth]
+2025-09-19T14:54:44.447915+07:00 elk-center sshd[10857]: Disconnected from authenticating user root 100.83.147.171 port 51299 [preauth]
+
+#đăng nhập thất bại (password sai) từ cùng IP 100.83.147.171 ngay sau khi logout.
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:54:46.493379+07:00 elk-center sshd[10859]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=100.83.147.171  user=root
+2025-09-19T14:54:48.437960+07:00 elk-center sshd[10859]: Failed password for root from 100.83.147.171 port 51300 ssh2
+2025-09-19T14:54:48.712272+07:00 elk-center sshd[10859]: Received disconnect from 100.83.147.171 port 51300:11: FlowSshClient: Disconnect on user's request [preauth]
+2025-09-19T14:54:48.712393+07:00 elk-center sshd[10859]: Disconnected from authenticating user root 100.83.147.171 port 51300 [preauth]
+
+#đăng nhập thất bại (password sai) từ cùng IP 100.83.147.171 ngay sau khi logout.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:54:48.931130+07:00 elk-center (sd-pam): pam_unix(systemd-user:session): session closed for user root
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:54:55.760448+07:00 elk-center sshd[10862]: Accepted password for root from 100.83.147.171 port 51301 ssh2
+2025-09-19T14:54:55.761776+07:00 elk-center sshd[10862]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:54:55.786215+07:00 elk-center systemd-logind[723]: New session 131 of user root.
+2025-09-19T14:54:55.799980+07:00 elk-center (systemd): pam_unix(systemd-user:session): session opened for user root(uid=0) by root(uid=0)
+
+#User root lại đăng nhập thành công từ cùng IP, lần này là port 51301.
+#Tạo ra session 131.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+2025-09-19T14:55:01.396396+07:00 elk-center CRON[10955]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:55:01.400243+07:00 elk-center CRON[10955]: pam_unix(cron:session): session closed for user root
+
+
+📌 Tóm tắt:
+14:44 → root đăng nhập thành công từ 100.83.147.171:51209 (session 128).
+14:54 → root logout, session 128 đóng.
+14:54–14:55 → có 2 lần thử login thất bại (password sai).
+14:55 → root lại login thành công từ 100.83.147.171:51301 (session 131).
+
+
+############################
+Create Event allow pid
+############################
+2025-09-19T14:44:20.126483+07:00 elk-center sshd[10694]: Accepted password for root from 100.83.147.171 port 51209 ssh2
+2025-09-19T14:44:20.127786+07:00 elk-center sshd[10694]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+
+
+2025-09-19T14:54:42.229424+07:00 elk-center sshd[10857]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=100.83.147.171  user=root
+2025-09-19T14:54:44.289610+07:00 elk-center sshd[10857]: Failed password for root from 100.83.147.171 port 51299 ssh2
+2025-09-19T14:54:44.447211+07:00 elk-center sshd[10857]: Received disconnect from 100.83.147.171 port 51299:11: FlowSshClient: Disconnect on user's request [preauth]
+2025-09-19T14:54:44.447915+07:00 elk-center sshd[10857]: Disconnected from authenticating user root 100.83.147.171 port 51299 [preauth]
+
+----------analysis:
+#hostname: elk-center
+#program: sshd
+#pid: 10857
+
+Dùng aggregate filter trong Logstash để gom nhiều log (cùng pid của sshd) → thành 1 event duy nhất.
+
+----------Cách hoạt động
+Mỗi kết nối SSH đều gắn với 1 PID (vd: sshd[10857]).
+Mình lấy pid làm “chìa khóa” (task_id).
+Logstash sẽ gom tất cả log có cùng pid vào 1 nhóm.
+Sau vài giây (timeout), nếu không còn log mới từ pid đó → Logstash sẽ xuất ra 1 event duy nhất.
+
+filter {
+  grok {
+	#collent logs
+    match => {
+      "message" => "%{TIMESTAMP_ISO8601:timestamp} %{HOSTNAME:hostname} sshd\[%{NUMBER:pid}\]: %{GREEDYDATA:ssh_msg}"
+    }
+  }
+
+  aggregate {
+    task_id => "%{pid}"          # gom theo PID
+    code => "
+      map['timestamp'] ||= event.get('timestamp')
+      map['hostname']  ||= event.get('hostname')
+      map['pid']       ||= event.get('pid')
+
+      # lưu tất cả các log vào mảng
+      map['details'] ||= []
+      map['details'] << event.get('ssh_msg')
+
+
+
+
+
+      # nếu có dòng Failed password thì trích user, ip, port
+      if event.get('ssh_msg') =~ /Failed password for/
+        map['user'] = event.get('ssh_msg').match(/Failed password for (\w+)/)[1] rescue nil
+        map['src_ip'] = event.get('ssh_msg').match(/from ([0-9.]+)/)[1] rescue nil
+        map['src_port'] = event.get('ssh_msg').match(/port (\d+)/)[1] rescue nil
+        map['status'] = 'failed'
+      end
+	  
+	      
+	  
+	  # Successful login
+      if event.get('ssh_msg') =~ /Accepted password for/
+        map['user']    = event.get('ssh_msg').match(/Accepted password for (\w+)/)[1] rescue nil
+        map['src_ip']  = event.get('ssh_msg').match(/from ([0-9.]+)/)[1] rescue nil
+        map['src_port']= event.get('ssh_msg').match(/port (\d+)/)[1] rescue nil
+        map['status']  = 'success'
+        map['auth_method'] = 'password'
+      end
+	
+
+
+	
+	  # Session opened
+      if event.get('ssh_msg') =~ /session opened for user/
+        map['session_status'] = 'opened'
+      end
+	  
+    "
+	
+	
+    push_map_as_event_on_timeout => true
+    timeout_task_id_field => "pid"
+    timeout => 5
+  }
+}
+
+
+
+
+
+
+
+			
+
+
+if event.get('ssh_msg') =~ /Received disconnect/
+	map['src_ip'] = event.get('ssh_msg').match(/from ([0-9.]+)/)[1] rescue nil
+	map['src_port'] = event.get('ssh_msg').match(/port (\d+)/)[1] rescue nil
+	map['status'] = 'disconnect'
+	reason_match = event.get('ssh_msg').match(/:\d+: (.*?)(?: \[preauth\])?$/)
+	map['reason'] = reason_match[1] rescue nil
+					
+end
+	if event.get('ssh_msg') =~ /Disconnected from/
+	map['src_ip'] ||= event.get('ssh_msg').match(/from ([0-9.]+)/)[1] rescue nil
+	map['src_port'] ||= event.get('ssh_msg').match(/port (\d+)/)[1] rescue nil
+	map['status'] = 'disconnected'
+end
+
+
+filter {
+  grok {
+    match => {
+      "message" => "%{TIMESTAMP_ISO8601:timestamp} %{HOSTNAME:hostname} %{SYSLOGPROG:program}\[%{NUMBER:pid}\]: %{GREEDYDATA:ssh_msg}"
+    }
+    tag_on_failure => ["_grokfail_ssh"]
+  }
+
+  if [program] == "sshd" {
+    aggregate {
+      task_id => "%{pid}"
+      code => "
+        map['timestamp'] ||= event.get('timestamp')
+        map['hostname'] ||= event.get('hostname')
+        map['pid'] ||= event.get('pid')
+
+        map['details'] ||= []
+        map['details'] << event.get('ssh_msg')
+
+        # -------------------
+        # LOGIN FAILED
+        if event.get('ssh_msg') =~ /Failed password for/
+          map['user'] = event.get('ssh_msg').match(/Failed password for (?:invalid user )?(\S+)/)[1] rescue nil
+          map['src_ip'] = event.get('ssh_msg').match(/from ([0-9.]+)/)[1] rescue nil
+          map['src_port'] = event.get('ssh_msg').match(/port (\d+)/)[1] rescue nil
+          map['status'] = 'failed'
+        end
+
+        # LOGIN SUCCESS
+        if event.get('ssh_msg') =~ /Accepted password for/
+          map['user'] = event.get('ssh_msg').match(/Accepted password for (\S+)/)[1] rescue nil
+          map['src_ip'] = event.get('ssh_msg').match(/from ([0-9.]+)/)[1] rescue nil
+          map['src_port'] = event.get('ssh_msg').match(/port (\d+)/)[1] rescue nil
+          map['status'] = 'success'
+          map['auth_method'] = 'password'
+        end
+
+        # INVALID USER
+        if event.get('ssh_msg') =~ /Invalid user/
+          map['user'] = event.get('ssh_msg').match(/Invalid user (\S+)/)[1] rescue nil
+          map['src_ip'] = event.get('ssh_msg').match(/from ([0-9.]+)/)[1] rescue nil
+          map['src_port'] = event.get('ssh_msg').match(/port (\d+)/)[1] rescue nil
+          map['status'] = 'invalid_user'
+        end
+
+        # DISCONNECT
+        if event.get('ssh_msg') =~ /Received disconnect/
+          map['src_ip'] ||= event.get('ssh_msg').match(/from ([0-9.]+)/)[1] rescue nil
+          map['src_port'] ||= event.get('ssh_msg').match(/port (\d+)/)[1] rescue nil
+          map['status'] = 'disconnect'
+          map['reason'] = event.get('ssh_msg').match(/: (.*?)(?: \\[preauth\\])?$/)[1] rescue nil
+        end
+
+        if event.get('ssh_msg') =~ /Disconnected from/
+          map['src_ip'] ||= event.get('ssh_msg').match(/ ([0-9.]+)/)[1] rescue nil
+          map['src_port'] ||= event.get('ssh_msg').match(/port (\d+)/)[1] rescue nil
+          map['status'] ||= 'disconnected'
+        end
+
+        # SESSION OPENED/CLOSED
+        if event.get('ssh_msg') =~ /session opened/
+          map['session'] = 'opened'
+        end
+        if event.get('ssh_msg') =~ /session closed/
+          map['session'] = 'closed'
+        end
+      "
+      push_map_as_event_on_timeout => true
+      timeout_task_id_field => "pid"
+      timeout => 20
+    }
+  }
+}
+
+
+
+
+filter {
+  grok {
+    match => {
+      # Phân tích log sshd
+      "message" => "%{TIMESTAMP_ISO8601:timestamp} %{HOSTNAME:hostname} %{SYSLOGPROG:program}\[%{NUMBER:pid}\]: %{GREEDYDATA:ssh_msg}"
+    }
+    tag_on_failure => ["_grokfail_ssh"]
+  }
+
+  if [program] == "sshd" {
+    aggregate {
+      task_id => "%{pid}"   # gom theo PID
+      code => "
+        map['timestamp'] ||= event.get('timestamp')
+        map['hostname']  ||= event.get('hostname')
+        map['pid']       ||= event.get('pid')
+
+        # Gom toàn bộ chuỗi log của PID
+        map['details'] ||= []
+        map['details'] << event.get('ssh_msg')
+
+        # Nếu có Accepted / Failed / Invalid user thì extract thêm thông tin
+        if event.get('ssh_msg') =~ /Accepted password for/
+          map['user']      = event.get('ssh_msg').match(/Accepted password for (\S+)/)[1] rescue nil
+          map['src_ip']    = event.get('ssh_msg').match(/from ([0-9.]+)/)[1] rescue nil
+          map['src_port']  = event.get('ssh_msg').match(/port (\d+)/)[1] rescue nil
+          map['auth_method'] = 'password'
+        elsif event.get('ssh_msg') =~ /Failed password for/
+          map['user']      = event.get('ssh_msg').match(/Failed password for (?:invalid user )?(\S+)/)[1] rescue nil
+          map['src_ip']    = event.get('ssh_msg').match(/from ([0-9.]+)/)[1] rescue nil
+          map['src_port']  = event.get('ssh_msg').match(/port (\d+)/)[1] rescue nil
+          map['status']    = 'failed'
+        elsif event.get('ssh_msg') =~ /Invalid user/
+          map['user']      = event.get('ssh_msg').match(/Invalid user (\S+)/)[1] rescue nil
+          map['src_ip']    = event.get('ssh_msg').match(/from ([0-9.]+)/)[1] rescue nil
+          map['src_port']  = event.get('ssh_msg').match(/port (\d+)/)[1] rescue nil
+          map['status']    = 'invalid_user'
+        end
+      "
+      push_map_as_event_on_timeout => true
+      timeout_task_id_field => "pid"
+      timeout => 5
+
+      timeout_code => "
+        if map['details']
+          # Ưu tiên theo thứ tự
+          if map['details'].any? {|d| d =~ /session closed for user/ }
+            map['status'] = 'success_closed'
+          elsif map['details'].any? {|d| d =~ /session opened for user/ }
+            map['status'] = 'success_opened'
+          elsif map['details'].any? {|d| d =~ /Accepted password/ }
+            map['status'] = 'success'
+          elsif map['details'].any? {|d| d =~ /Invalid user/ }
+            map['status'] = 'invalid_user'
+          elsif map['details'].any? {|d| d =~ /Failed password/ }
+            map['status'] = 'failed'
+          elsif map['details'].any? {|d| d =~ /\[preauth\]/ }
+            map['status'] = 'disconnect_preauth'
+          elsif map['details'].any? {|d| d =~ /Server listening/ }
+            map['status'] = 'listening'
+          else
+            map['status'] = 'unknown'
+          end
+        end
+      "
+    }
+  }
+}
+
+
+
+timeout_code => "
+  if map['details']
+    if map['details'].any? {|d| d =~ /session closed for user/ }
+      map['status'] = 'success_closed'
+    elsif map['details'].any? {|d| d =~ /session opened for user/ }
+      map['status'] = 'success_opened'
+    elsif map['details'].any? {|d| d =~ /Accepted password/ }
+      map['status'] = 'success'
+    elsif map['details'].any? {|d| d =~ /Invalid user/ }
+      map['status'] = 'invalid_user'
+    elsif map['details'].any? {|d| d =~ /Failed password/ }
+      map['status'] = 'failed'
+    elsif map['details'].any? {|d| d =~ /Disconnected from/ }
+      map['status'] = 'disconnect'
+    elsif map['details'].any? {|d| d =~ /\[preauth\]/ }
+      map['status'] = 'disconnect_preauth'
+    elsif map['details'].any? {|d| d =~ /Server listening/ }
+      map['status'] = 'listening'
+    else
+      map['status'] = 'unknown'
+    end
+  end
+"

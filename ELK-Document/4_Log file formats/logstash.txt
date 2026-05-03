@@ -1,0 +1,106 @@
+--------------------------------------------------------------------
+Tập hợp lệnh và bước kiểm tra hữu dụng để debug / kiểm tra Logstash
+--------------------------------------------------------------------
+
+Kiểm tra trạng thái systemd:
+sudo systemctl status logstash
+
+Xem log realtime từ journal:
+sudo journalctl -u logstash -f --no-pager
+
+Xem log gần nhất (file nếu dùng file logs)
+sudo tail -n 200 /var/log/logstash/logstash-plain.log
+# hoặc
+sudo tail -n 200 /var/log/logstash/logstash.log
+
+--------------------------------------------------------------------
+2) Kiểm tra cấu hình (syntax / test)
+--------------------------------------------------------------------
+
+Test syntax và thoát (không start):
+sudo /usr/share/logstash/bin/logstash --path.settings /etc/logstash --config.test_and_exit -f /etc/logstash/conf.d/
+
+Kiểm tra và hiển thị config khi start (chạy foreground, debug):
+sudo /usr/share/logstash/bin/logstash --path.settings /etc/logstash -f /etc/logstash/conf.d/ --log.level debug
+
+sudo /usr/share/logstash/bin/logstash --path.settings /etc/logstash --pipeline.id ID -f /etc/logstash/conf.d/ --log.level debug
+
+sudo /usr/share/logstash/bin/logstash --path.settings /etc/logstash --pipeline.id ID --log.level debug -f /etc/logstash/conf.d/
+--------------------------------------------------------------------
+3) Kiểm tra pipeline / API nội bộ
+--------------------------------------------------------------------
+
+Kiểm tra API node/pipelines (mặc định Logstash mở port 9600 cho API):
+curl -sS http://127.0.0.1:9600/_node/pipelines?pretty
+
+--------------------------------------------------------------------
+4) Kiểm tra ports / kết nối (ví dụ beats 5044, tcp inputs...)
+--------------------------------------------------------------------
+
+Kiểm tra port đang lắng nghe:
+sudo ss -ltnp | grep -E '5044|9600|3334|5045'   # thay port bạn dùng
+# hoặc
+sudo netstat -ltnp | grep logstash
+
+--------------------------------------------------------------------
+5) Kiểm tra quyền file / đường dẫn
+--------------------------------------------------------------------
+
+Nếu input là file, kiểm tra quyền đọc:
+ls -l /path/to/log/file
+# Logstash user (thường logstash) phải có quyền đọc
+
+Với file input start_position => "end" lưu ý: nếu file đã đọc trước đó, Logstash có sincedb theo user — xóa sincedb test lại nếu cần:
+sudo find /var/lib/logstash -type f -name 'sincedb*' -delete
+
+--------------------------------------------------------------------
+6) Kiểm tra kết nối tới Elasticsearch / output
+--------------------------------------------------------------------
+
+Kiểm tra ES reachable:
+curl -sS 'http://es-host:9200/?pretty'
+
+--------------------------------------------------------------------
+7) Debug event pipeline (thử output ra stdout)
+--------------------------------------------------------------------
+
+Tạm thời thêm output debug để kiểm tra event:
+output {
+  stdout { codec => rubydebug }
+  # hoặc chỉ dùng stdout khi debug
+}
+
+--------------------------------------------------------------------
+8) Kiểm tra plugin / version / dependencies
+--------------------------------------------------------------------
+
+Liệt kê plugin:
+/usr/share/logstash/bin/logstash-plugin list --verbose
+
+Kiểm tra version:
+/usr/share/logstash/bin/logstash --version
+
+--------------------------------------------------------------------
+9) Kiểm tra bộ nhớ / JVM
+--------------------------------------------------------------------
+
+Nếu Logstash crash do heap, kiểm tra journal + xem file jvm.options (heap settings):
+sudo cat /etc/logstash/jvm.options | grep -E '^-Xm'
+# kiểm tra journal logs cho OOM
+sudo journalctl -u logstash | grep -i oom
+
+--------------------------------------------------------------------
+10) Một số lỗi hay gặp & cách nhìn nhanh
+--------------------------------------------------------------------
+
+Could not find logstash.yml khi chạy bằng tay -> cần chỉ --path.settings /etc/logstash.
+Lỗi plugin not installed -> cài bằng sudo /usr/share/logstash/bin/logstash-plugin install <name>.
+Beats SSL/TLS error -> kiểm tra cert/key path, quyền và rằng beats input bật ssl => true và cert đúng.
+File input không đọc -> do sincedb hoặc quyền.
+
+
+
+
+
+
+

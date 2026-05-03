@@ -1,0 +1,23 @@
+🧭 Thứ tự mức độ log chuẩn (từ thấp → cao)
+| Cấp độ                      | Tên thông thường | Ý nghĩa                                                                      | Khi nào dùng                                              |
+| --------------------------- | ---------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------- |
+| **TRACE**                   | (chi tiết nhất)  | Ghi lại mọi bước xử lý, biến, luồng chi tiết nội bộ.                         | Dùng khi debug sâu, chỉ bật trong môi trường phát triển.  |
+| **DEBUG**                   | Gỡ lỗi           | Ghi thông tin hỗ trợ lập trình viên theo dõi luồng xử lý.                    | Dùng trong quá trình phát triển hoặc kiểm thử.            |
+| **INFO**                    | Thông tin        | Ghi lại sự kiện bình thường (ứng dụng khởi động, người dùng đăng nhập, v.v.) | Dùng để mô tả trạng thái hoạt động bình thường.           |
+| **WARN**                    | Cảnh báo         | Có vấn đề tiềm ẩn, nhưng chương trình vẫn chạy được.                         | Ví dụ: cấu hình thiếu, kết nối lại mạng, dung lượng thấp. |
+| **ERROR**                   | Lỗi              | Lỗi khiến một chức năng không thực thi được.                                 | Dùng để ghi lỗi mà hệ thống vẫn chạy phần khác được.      |
+| **FATAL** hoặc **CRITICAL** | Lỗi nghiêm trọng | Lỗi khiến chương trình dừng hoặc mất dữ liệu.                                | Dùng khi ứng dụng phải thoát hoặc cần xử lý khẩn.         |
+
+
+🔢 Thứ tự số (theo Syslog RFC 5424)
+| Cấp độ | Tên                                   | Giá trị |
+| ------ | ------------------------------------- | ------- |
+| 0      | **EMERGENCY** (system is unusable)    | 0       |
+| 1      | **ALERT** (immediate action required) | 1       |
+| 2      | **CRITICAL**                          | 2       |
+| 3      | **ERROR**                             | 3       |
+| 4      | **WARNING**                           | 4       |
+| 5      | **NOTICE**                            | 5       |
+| 6      | **INFO**                              | 6       |
+| 7      | **DEBUG**                             | 7       |
+

@@ -1,0 +1,185 @@
+#B1
+#create index library
+PUT /library
+{
+  "mappings": {
+    "properties": {
+      "title": { "type": "text" },
+      "author": { "type" : "keyword" },
+      "year": { "type" : "integer" },
+      "tags": { "type" : "keyword" },
+      "rating": { "type" : "float" }
+    }
+  }
+}
+
+
+GET _resolve/index/library
+
+GET /library
+
+GET /library/_mapping
+
+GET /library/_stats
+
+GET /_cat/indices/library
+
+
+#B2
+#add data to library
+POST /library/_doc
+{ 
+  "title": "Elasticsearch Basics",
+  "author": "Alice",
+  "year": 2023,
+  "tags": ["search","intro"],
+  "rating": 4.5
+}
+
+POST /library/_doc
+{ 
+  "title": "Advanced Security",
+  "author": "Bob",
+  "year": 2021,
+  "tags": ["security","advanced"],
+  "rating": 4.8
+}
+
+POST /library/_doc
+{ 
+  "title": "Data Analytics with ES",
+  "author": "Alice",
+  "year": 2022,
+  "tags": ["analytics","bigdata"],
+  "rating": 4.2
+}
+
+#B3
+#search with keyword
+GET /library/_search
+{
+  "query": {"match": {"title": "ES"} }
+}
+
+#B4
+GET /library/_search
+{
+  "query": {
+    "range": {
+      "year": {
+        "lte": 2022
+      }
+    }
+  }
+}
+
+#B5
+GET /library/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {"term": {
+          "author": {
+            "value": "Alice"
+          }
+        }},
+        {"range": {
+          "rating": {
+            "gte": 4.3
+            
+          }
+        }}
+      ]
+    }
+  }
+}
+
+#B6
+#sort
+GET /library/_search
+{
+  "sort": [
+    {
+      "rating": {
+        "order": "desc" #giam dan
+      }
+    }
+  ]
+}
+
+#B7
+#count library with author
+GET /library/_search
+{
+  "size": 0,
+  "aggs": {
+    "books_per_author": {
+      "terms": {
+        "field": "author"
+      }
+    }
+  }
+}
+GET /library/_search
+{
+  "size": 0,
+  "aggs": {
+    "books_per_author": {
+      "terms": { "field": "author" }
+    }
+  }
+}
+
+#B8
+#bulk API
+
+
+
+POST /library/_bulk
+{"index":{"_id":14}}{"title":"Code AI", "author":"AI","year":"2021","tags":["AI","ES"],"rating":5.0}{"index":{"_id":15}}{"title":"Code PY","author":"HackerTor","year":"2025","tags":["PY","Hacker"],"rating":10}
+
+
+ 
+GET /library/_mapping
+
+GET /library/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+#hien thi doc 15 trong index library
+GET /library/_doc/15
+
+get /library/_doc/10
+
+#B9 update document
+#Yêu cầu: Update rating của sách _id = 10 thành 4.3.
+POST /library/_update/10
+{
+  "doc": {"rating" : 4.3}
+}
+
+#Bài 10 — Xem mapping & health
+#Yêu cầu: Xem mapping của library và tình trạng cluster.
+GET /library/_mapping
+GET /_cluster/health
+
+
+
+GET /library
+
+GET /_cat/indices/library
+
+GET /_cluster/health
+
+DELETE .monitoring-es-7-2025.09.10
+
+DELETE .monitoring-kibana-7-2025.09.10
+
+
+
+
+

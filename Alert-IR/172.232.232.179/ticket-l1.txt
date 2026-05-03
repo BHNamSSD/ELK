@@ -1,0 +1,85 @@
+Title
+[Medium][WEB] Detect Bot Scanning - suspicious IP 172.232.232.179
+
+Summary
+Detected potential bot scanning activity from external IP 172.232.232.179 target web server on Mar 26, 2026
+
+Alert details
+- Timestamp: 2026-03-25T18:24:36.132Z
+- Source IP: 172.232.232.179
+- Destination: web server
+- Rule: [WEB] Detect Bot Scanning
+- Severity: Medium
+- Risk score: 40
+- Count: 214
+
+Investigation
+- Multiple HTTP requests observed in short timeframe
+- Access attemps sensitive paths (/wordpress, /wp-admin, /update)
+- Suspiciout User-agent detected: most Other
+- No abnormal response codes (200) detected
+
+Impact assessment
+- No evidence of successful exploitation, Activity appears limited to reconnaissance
+
+Classtification
+- Malicious reconnaissance activity
+
+Recommend Actions
+- Block source IP at WAF/Firewall
+- Review web server logs for possible exploitation attempts
+- Monitor for repeated scanning from similar IP ranges
+
+Actions taken
+- Check IP 172.232.232.179 on AbuseIPDB: 72% with categries Brute-Force, SSH, Port Scan
+- Check IP 172.232.232.179 on Virus Total: 2/94 security vendors flagged this IP address as malicious
+
+Status
+- Escalated
+
+Escalation
+- Assign: SOC L2
+
+
+
+Title
+[Medium][WEB] Detect Bot Scanning - suspicious IP 172.232.232.179
+
+Summary
+Detected potential bot scanning activity from external IP 172.232.232.179 target web server on Mar 26, 2026
+
+Alert details
+- Timestamp: 2026-03-25T18:24:36.132Z
+- Source IP: 172.232.232.179
+- Destination: web server
+- Rule: [WEB] Detect Bot Scanning
+- Severity: Low
+- Risk score: 20
+- Count: 214
+
+Investigation
+- Multiple HTTP requests observed in short timeframe
+- Access attemps sensitive paths (/wordpress, /wp-admin, /update)
+- Suspiciout User-agent detected: 
+- No abnormal response codes (200) detected
+
+Impact assessment
+- No evidence of successful exploitation, Activity appears limited to reconnaissance
+
+Classtification
+- Malicious reconnaissance activity
+
+Recommend Actions
+- Block source IP at WAF/Firewall
+- Review web server logs for possible exploitation attempts
+- Monitor for repeated scanning from similar IP ranges
+
+Actions taken
+- Check IP 172.232.232.179 on AbuseIPDB: 72% with categries Brute-Force, SSH, Port Scan
+- Check IP 172.232.232.179 on Virus Total: 2/94 security vendors flagged this IP address as malicious
+
+Status
+- Escalated
+
+Escalation
+- Assign: SOC L2

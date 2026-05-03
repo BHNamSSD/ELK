@@ -1,0 +1,74 @@
+2025-09-19T14:44:15.635275+07:00 elk-center sshd[10692]: Server listening on 0.0.0.0 port 22.
+2025-09-19T14:44:15.635495+07:00 elk-center sshd[10692]: Server listening on :: port 22.
+2025-09-19T14:44:20.126483+07:00 elk-center sshd[10694]: Accepted password for root from 100.83.147.171 port 51209 ssh2
+2025-09-19T14:44:20.127786+07:00 elk-center sshd[10694]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:44:20.157447+07:00 elk-center systemd-logind[723]: New session 128 of user root.
+2025-09-19T14:44:20.174570+07:00 elk-center (systemd): pam_unix(systemd-user:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:45:01.388894+07:00 elk-center CRON[10807]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:45:01.391152+07:00 elk-center CRON[10807]: pam_unix(cron:session): session closed for user root
+2025-09-19T14:54:38.716348+07:00 elk-center sshd[10694]: Received disconnect from 100.83.147.171 port 51209:11: FlowSshClient: Disconnect on user's request
+2025-09-19T14:54:38.716653+07:00 elk-center sshd[10694]: Disconnected from user root 100.83.147.171 port 51209
+2025-09-19T14:54:38.716718+07:00 elk-center sshd[10694]: pam_unix(sshd:session): session closed for user root
+2025-09-19T14:54:38.719954+07:00 elk-center systemd-logind[723]: Session 128 logged out. Waiting for processes to exit.
+2025-09-19T14:54:38.720584+07:00 elk-center systemd-logind[723]: Removed session 128.
+2025-09-19T14:54:42.229424+07:00 elk-center sshd[10857]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=100.83.147.171  user=root
+2025-09-19T14:54:44.289610+07:00 elk-center sshd[10857]: Failed password for root from 100.83.147.171 port 51299 ssh2
+2025-09-19T14:54:44.447211+07:00 elk-center sshd[10857]: Received disconnect from 100.83.147.171 port 51299:11: FlowSshClient: Disconnect on user's request [preauth]
+2025-09-19T14:54:44.447915+07:00 elk-center sshd[10857]: Disconnected from authenticating user root 100.83.147.171 port 51299 [preauth]
+2025-09-19T14:54:46.493379+07:00 elk-center sshd[10859]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=100.83.147.171  user=root
+2025-09-19T14:54:48.437960+07:00 elk-center sshd[10859]: Failed password for root from 100.83.147.171 port 51300 ssh2
+2025-09-19T14:54:48.712272+07:00 elk-center sshd[10859]: Received disconnect from 100.83.147.171 port 51300:11: FlowSshClient: Disconnect on user's request [preauth]
+2025-09-19T14:54:48.712393+07:00 elk-center sshd[10859]: Disconnected from authenticating user root 100.83.147.171 port 51300 [preauth]
+2025-09-19T14:54:48.931130+07:00 elk-center (sd-pam): pam_unix(systemd-user:session): session closed for user root
+2025-09-19T14:54:55.760448+07:00 elk-center sshd[10862]: Accepted password for root from 100.83.147.171 port 51301 ssh2
+2025-09-19T14:54:55.761776+07:00 elk-center sshd[10862]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:54:55.786215+07:00 elk-center systemd-logind[723]: New session 131 of user root.
+2025-09-19T14:54:55.799980+07:00 elk-center (systemd): pam_unix(systemd-user:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:55:01.396396+07:00 elk-center CRON[10955]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-19T14:55:01.400243+07:00 elk-center CRON[10955]: pam_unix(cron:session): session closed for user root
+2025-09-19T19:14:46.586172+07:00 elk-center sshd[36119]: Received disconnect from 21.193.50.54 port 58649:11: FlowSshClientSession: host key rejected [preauth] 
+2025-09-19T19:14:46.587358+07:00 elk-center sshd[36119]: Disconnected from 21.193.50.54 port 58649 [preauth]
+2025-09-20T21:43:15.881267+07:00 elk-center sshd[350390]: Received disconnect from 21.219.17.222 port 50819:11: FlowSshClient: Disconnect on user's request
+2025-09-20T21:43:15.881611+07:00 elk-center sshd[350390]: Disconnected from user root 21.219.17.222 port 50819
+2025-09-20T21:43:15.881692+07:00 elk-center sshd[350390]: pam_unix(sshd:session): session closed for user root
+2025-09-24T10:48:10.002327+07:00 elk-center sshd[1160309]: error: Received disconnect from 21.219.17.222 port 52035:13: User request [preauth]
+2025-09-24T10:48:10.002777+07:00 elk-center sshd[1160309]: Disconnected from 21.219.17.222 port 52035 [preauth]
+2025-09-24T10:48:19.238298+07:00 elk-center sshd[1160311]: Invalid user phamh from 21.219.17.222 port 52038
+2025-09-24T10:48:24.853197+07:00 elk-center sshd[1160311]: error: Received disconnect from 21.219.17.222 port 52038:13: User request [preauth]
+2025-09-24T10:48:24.853493+07:00 elk-center sshd[1160311]: Disconnected from invalid user phamh 21.219.17.222 port 52038 [preauth]
+2025-09-24T10:48:32.437255+07:00 elk-center sshd[1160313]: error: Received disconnect from 21.219.17.222 port 52039:13: User request [preauth]
+2025-09-24T10:48:32.438094+07:00 elk-center sshd[1160313]: Disconnected from 21.219.17.222 port 52039 [preauth]
+2025-09-24T10:48:38.695237+07:00 elk-center sshd[1160315]: error: Received disconnect from 21.219.17.222 port 52040:13: User request [preauth]
+2025-09-24T10:48:38.696079+07:00 elk-center sshd[1160315]: Disconnected from 21.219.17.222 port 52040 [preauth]
+2025-09-24T10:48:48.348700+07:00 elk-center sshd[1160317]: Accepted password for root from 21.219.17.222 port 52041 ssh2
+2025-09-24T10:48:48.349967+07:00 elk-center sshd[1160317]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-24T10:48:48.354301+07:00 elk-center systemd-logind[723]: New session 968 of user root.
+2025-09-24T10:52:17.119333+07:00 elk-center sshd[1160317]: Received disconnect from 21.219.17.222 port 52041:11: FlowSshClient: Disconnect on user's request
+2025-09-24T10:52:17.123645+07:00 elk-center sshd[1160317]: Disconnected from user root 21.219.17.222 port 52041
+2025-09-24T10:52:17.123968+07:00 elk-center systemd-logind[723]: Session 968 logged out. Waiting for processes to exit.
+2025-09-24T10:52:17.124079+07:00 elk-center sshd[1160317]: pam_unix(sshd:session): session closed for user root
+2025-09-24T10:52:17.124642+07:00 elk-center systemd-logind[723]: Removed session 968.
+2025-09-24T10:52:23.593516+07:00 elk-center sshd[1160418]: Invalid user root1 from 21.219.17.222 port 52052
+2025-09-24T10:52:23.595745+07:00 elk-center sshd[1160418]: pam_unix(sshd:auth): check pass; user unknown
+2025-09-24T10:52:23.595825+07:00 elk-center sshd[1160418]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=21.219.17.222
+2025-09-24T10:52:26.116537+07:00 elk-center sshd[1160418]: Failed password for invalid user root1 from 21.219.17.222 port 52052 ssh2
+2025-09-24T10:52:26.635926+07:00 elk-center sshd[1160418]: Received disconnect from 21.219.17.222 port 52052:11: FlowSshClient: Disconnect on user's request [preauth]
+2025-09-24T10:52:26.636094+07:00 elk-center sshd[1160418]: Disconnected from invalid user root1 21.219.17.222 port 52052 [preauth]
+2025-09-24T10:52:33.002130+07:00 elk-center sshd[1160420]: error: Received disconnect from 21.219.17.222 port 52053:13: User request [preauth]
+2025-09-24T10:52:33.002705+07:00 elk-center sshd[1160420]: Disconnected from 21.219.17.222 port 52053 [preauth]
+2025-09-24T10:52:37.930628+07:00 elk-center sshd[1160422]: Invalid user root2 from 21.219.17.222 port 52054
+2025-09-24T10:52:37.932901+07:00 elk-center sshd[1160422]: pam_unix(sshd:auth): check pass; user unknown
+2025-09-24T10:52:37.933005+07:00 elk-center sshd[1160422]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=21.219.17.222
+2025-09-24T10:52:40.042187+07:00 elk-center sshd[1160422]: Failed password for invalid user root2 from 21.219.17.222 port 52054 ssh2
+2025-09-24T10:52:41.850109+07:00 elk-center sshd[1160422]: Received disconnect from 21.219.17.222 port 52054:11: FlowSshClient: Disconnect on user's request [preauth]
+2025-09-24T10:52:41.850933+07:00 elk-center sshd[1160422]: Disconnected from invalid user root2 21.219.17.222 port 52054 [preauth]
+2025-09-24T10:52:41.972492+07:00 elk-center sshd[1160424]: Invalid user root2 from 21.219.17.222 port 52055
+2025-09-24T10:52:41.974747+07:00 elk-center sshd[1160424]: pam_unix(sshd:auth): check pass; user unknown
+2025-09-24T10:52:41.975001+07:00 elk-center sshd[1160424]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=21.219.17.222
+2025-09-24T10:52:43.963995+07:00 elk-center sshd[1160424]: Failed password for invalid user root2 from 21.219.17.222 port 52055 ssh2
+2025-09-24T10:52:56.304894+07:00 elk-center sshd[1160424]: error: Received disconnect from 21.219.17.222 port 52055:13: User request [preauth]
+2025-09-24T10:52:56.305448+07:00 elk-center sshd[1160424]: Disconnected from invalid user root2 21.219.17.222 port 52055 [preauth]
+2025-09-24T10:53:03.920248+07:00 elk-center sshd[1160426]: Accepted password for root from 21.219.17.222 port 52056 ssh2
+2025-09-24T10:53:03.921599+07:00 elk-center sshd[1160426]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-24T10:53:03.925362+07:00 elk-center systemd-logind[723]: New session 969 of user root.
+

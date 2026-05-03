@@ -1,0 +1,42 @@
+Title
+[Medium][WEB] Detect Bot Scanning - suspicious IP 93.123.109.246
+
+Summary
+Detected potential bot scanning activity from external IP 93.123.109.246 target web server on Mar 16, 2026
+
+Alert details
+- Timestamp: 2026-03-19T19:21:48.089Z
+- Source IP: 93.123.109.246
+- Destination: web server
+- Rule: [WEB] Detect Bot Scanning
+- Severity: Medium
+- Risk score: 40
+- Count: 797
+
+Investigation
+- Multiple HTTP requests observed in short timeframe
+- Access attemps sensitive paths (/public_html, /laravel)
+- Suspiciout User-agent detected: Other
+- No abnormal response codes (200) detected
+
+Impact assessment
+- No evidence of successful exploitation, Activity appears limited to reconnaissance
+
+Classtification
+- Malicious reconnaissance activity
+
+Recommend Actions
+- Block source IP at WAF/Firewall
+- Review web server logs for possible exploitation attempts
+- Monitor for repeated scanning from similar IP ranges
+
+Actions taken:
+- Checked source IP 93.123.109.246 on AbuseIPDB: DDoS Attack Web App Attack Hacking
+- Checked source IP 93.123.109.246 on VirusTotal: 19/94 security vendors flagged this IP address as malicious
+
+
+Status
+- Escalated
+
+Escalation
+- Assign: SOC L2

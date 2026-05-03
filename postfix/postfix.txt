@@ -1,0 +1,182 @@
+---------------------------------------------
+1) Tổng quan ngắn gọn
+---------------------------------------------
+
+Postfix là một Mail Transfer Agent (MTA) phổ biến, nhiệm vụ nhận, xếp hàng và chuyển tiếp email.
+Có thể chạy:
+như SMTP server (nhận mail từ Internet),
+như relay (chuyển mail của hệ thống lên một SMTP khác như Gmail),
+hoặc cả hai.
+Để gửi mail qua Gmail bạn cần xác thực SMTP (AUTH) và TLS (port 587). Với tài khoản Google, cần App Password (nếu bật 2FA) hoặc cấu hình OAuth (phức tạp hơn).
+
+---------------------------------------------
+2) Những lưu ý trước khi bắt đầu
+---------------------------------------------
+Quyền root / sudo trên máy Debian/Ubuntu.
+Nếu muốn gửi qua Gmail: chuẩn bị email + app password.
+Mở firewall port 25/587 nếu bạn muốn nhận hoặc cho submission từ mạng khác.
+Kiểm tra logs: /var/log/mail.log (Debian/Ubuntu).
+
+dxtg pbok szjf srog 
+
+
+---------------------------------------------
+3) Cài Postfix (Debian/Ubuntu)
+---------------------------------------------
+
+sudo apt update
+sudo apt install postfix mailutils libsasl2-modules -y
+
+
+
+mailutils để bạn test gửi mail.
+libsasl2-modules để Postfix hỗ trợ xác thực SMTP.
+
+
+Trong quá trình cài apt sẽ hỏi một vài lựa chọn check file: postfix_install_linux.docx
+System mail name → example.com (tên miền máy chủ, có thể là hostname hoặc domain bạn muốn gửi mail từ đó).
+Nếu bạn muốn sau cài đặt thay đổi tay, mình sẽ hướng dẫn thay đổi main.cf ở dưới.
+
+1. Chuẩn bị
+Email Gmail cá nhân: yourname@gmail.com
+App Password: chuỗi 16 ký tự Google đã cấp cho bạn (ví dụ abcd efgh ijkl mnop).
+
+---------------------------------------------
+🔧 Sau khi hoàn tất cài đặt:
+---------------------------------------------
+---------------------------------------------
+Kiểm tra trong main.cf có bật xác thực chưa:
+---------------------------------------------
+sudo vi /etc/postfix/main.cf
+add to file under code: relayhost = [smtp.gmail.com]:587
+
+# Xác thực SMTP với Gmail
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_sasl_security_options = noanonymous
+smtp_sasl_tls_security_options = noanonymous
+
+# Bật TLS cho kết nối ra ngoài
+smtp_use_tls = yes
+smtp_tls_security_level = encrypt
+smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
+
+
+
+Bạn chỉ cần làm 3 bước nhỏ nữa để hoàn thiện Gmail relay:
+
+Tạo file chứa thông tin xác thực Gmail
+sudo vi /etc/postfix/sasl_passwd
+
+Mã hóa và bảo mật file:
+sudo postmap /etc/postfix/sasl_passwd
+sudo chmod 600 /etc/postfix/sasl_passwd*
+
+Khởi động lại Postfix:
+sudo systemctl restart postfix
+
+Sau đó bạn có thể test thử gửi mail:
+echo "Test Gmail relay with user" | mail -s "Postfix Gmail Test with user" phamhuynam.com@gmail.com
+
+#send with user diff
+sudo -u web_bhnamssd sh -c 'echo "This is email Web BHNamSSD" | mail -s "Web BHNamSSD Note" phamhuynam.com@gmail.com'
+
+#hoac
+sudo -u bhnam sh -c 'sendmail phamhuynam.com@gmail.com <<EOF
+Subject: Test từ bhnam
+From: Bhnam <bhnam@elk-center>
+Nội dung
+EOF'
+
+
+---------------------------------------------
+💻 Trên máy Kibana (client gửi qua relay)
+---------------------------------------------
+muc dinh: chuyen thong bao den postfix tren may chay postfix
+
+sudo apt install mailutils -y
+-> No configuration
+
+========================================================
+sudo vi /etc/postfix/main.cf
+========================================================
+# ==============================
+# Postfix configuration for Kibana
+# Gửi mail qua máy ELK-Center
+# ==============================
+
+# Tên máy (hostname của Kibana)
+myhostname = elk-kibana
+
+# Domain gốc (tùy chọn)
+#myorigin = /etc/mailname
+#hoac
+myorigin = $myhostname
+
+
+# Máy relay trung gian (ELK-Center)
+relayhost = [elk-center]:25
+
+# Giao tiếp mạng
+inet_interfaces = loopback-only
+inet_protocols = ipv4
+
+# Không cần TLS vì gửi nội bộ
+smtp_use_tls = no
+smtp_tls_security_level = none
+
+# Cho phép gửi từ localhost
+mynetworks = 127.0.0.0/8
+
+# Giới hạn kích thước mailbox
+mailbox_size_limit = 0
+recipient_delimiter = +
+========================================================
+
+sudo systemctl restart postfix
+sudo systemctl enable postfix
+
++++++++++++++++++++++++++++
+note: chinh su trong may chay postfix mo netword cho kibana truy cap den qua port 25
++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------
+💻 Trên máy proxmox (client gửi qua relay)
+---------------------------------------------
+muc dinh: chuyen thong bao den postfix tren may chay postfix
+
+sudo apt install mailutils -y
+-> No configuration
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

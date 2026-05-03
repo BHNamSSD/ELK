@@ -1,0 +1,46 @@
+Title
+[Medium][WEB] Detect Bot Scanning - suspicious IP 104.28.196.52
+
+Summary
+Detected potential bot scanning activity from external IP 104.28.196.52 target web server on Apr 3, 2026
+
+Alert details
+- Timestamp: 2026-04-02T17:29:43.680Z
+- Source IP: 104.28.196.52
+- Destination: web server
+- Rule: [WEB] Detect Bot Scanning
+- Severity: Low
+- Risk score: 20
+- Count: 72
+
+Investigation
+- Multiple HTTP requests observed in short timeframe
+- Access attemps sensitive paths (+/.env, /.env.+)
+- Suspiciout User-agent detected: Chrome
+- No abnormal response codes (200) detected
+
+Impact assessment
+- No evidence of successful exploitation, Activity appears limited to reconnaissance
+
+Classtification
+- Malicious reconnaissance activity
+
+Recommend Actions
+- Block source IP at WAF/Firewall
+- Review web server logs for possible exploitation attempts
+- Monitor for repeated scanning from similar IP ranges
+
+Actions taken:
+- Checked source 104.28.196.52 on AbuseIPDB: 63% Categories: Bad Web Bot, Web App Attack
+- Checked source 104.28.196.52 on VirusTotal: 1/94 security vendor flagged this IP address as malicious
+
+104.28.196.52
+(104.28.0.0/16)
+AS 13335
+( Cloudflare, Inc. ) 
+
+Status
+- Escalated
+
+Escalation
+- Assign: SOC L2

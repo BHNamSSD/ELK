@@ -1,0 +1,17 @@
+[LINUX] SSH Brute Force (Single Account)
+
+🎯 Mục tiêu
+1 IP tấn công 1 tài khoản nhiều lần
+
+
+🧠 KQL Query
+event.category : authentication
+and event.outcome : failure
+and process.name : sshd
+
+
+
+⚙️ Threshold
+Group by: source.ip, user.name
+Count >= 5
+Time window: 5 minutes

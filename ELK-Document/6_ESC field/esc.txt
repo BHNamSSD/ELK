@@ -1,0 +1,94 @@
+🔥 1. ECS chuẩn hóa cái gì?
+
+👉 ECS chuẩn hóa 3 thứ chính:
+🧠 (1) Tên field (naming)
+Không dùng lung tung:
+client_ip → ❌
+src_ip → ❌
+Dùng chuẩn:
+client.ip → ✅
+
+🧠 (2) Cấu trúc (structure)
+👉 Dạng:
+group.field.subfield
+Ví dụ:
+http.request.method
+host.ip
+event.category
+
+🧠 (3) Ý nghĩa (semantic)
+👉 Field phải đúng nghĩa:
+| Field            | Ý nghĩa     |
+| ---------------- | ----------- |
+| `client.ip`      | attacker    |
+| `host.ip`        | server      |
+| `source.ip`      | nguồn chung |
+| `destination.ip` | đích        |
+
+
+🎯 2. Những nhóm field ECS QUAN TRỌNG nhất
+👉 Đây là core ECS mà hầu như log nào cũng nên có
+🔥 (A) @timestamp (BẮT BUỘC)
+@timestamp
+✔️ Thời gian event
+✔️ Kibana dùng để vẽ timeline
+
+🔥 (B) event.* (LINH HỒN SIEM)
+event.kind
+event.category
+event.type
+event.dataset
+
+👉 Ví dụ:
+event.kind = alert
+event.category = web
+event.type = attack
+event.dataset = modsecurity
+
+🔥 (C) client / source / destination
+client.ip
+client.port
+👉 Hoặc:
+source.ip
+destination.ip
+
+🔥 (D) HTTP (nếu là web)
+http.request.method
+http.response.status_code
+url.original
+user_agent.original
+
+🔥 (E) rule.* (WAF / IDS)
+rule.id
+rule.description
+rule.category
+
+
+🔥 (F) host.* (máy bị attack)
+host.name
+host.ip
+
+🔥 (G) agent.* (Filebeat, Winlogbeat…)
+agent.name
+agent.version
+
+
+📦 3. Những field ECS “mặc định hay có”
+👉 Khi bạn dùng Filebeat / Elastic:
+✔️ Auto có:
+@timestamp
+agent.*
+host.*
+ecs.version
+log.file.path
+
+
+
+
+
+
+
+
+
+
+

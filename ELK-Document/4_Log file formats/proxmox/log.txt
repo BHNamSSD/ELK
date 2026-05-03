@@ -1,0 +1,236 @@
+{
+      "journald" => {
+            "gid" => 0,
+         "custom" => {
+               "runtime_scope" => "system",
+            "syslog_timestamp" => "Sep 17 04:47:11 ",
+             "selinux_context" => "unconfined\n"
+        },
+            "pid" => 389237,
+            "uid" => 0,
+           "host" => {
+            "boot_id" => "77183495e892440c8c3db0de939401e3"
+        },
+        "process" => {
+                    "name" => "sshd",
+              "executable" => "/usr/sbin/sshd",
+            "command_line" => "\"sshd: root [priv]\"",
+             "capabilites" => "1ffffffffff"
+        }
+    },
+        "syslog" => {
+               "pid" => 389237,
+        "identifier" => "sshd",
+          "facility" => 4,
+          "priority" => 6
+    },
+      "@version" => "1",
+    "@timestamp" => 2025-09-16T21:47:11.700Z,
+          "user" => {
+           "id" => "0",
+        "group" => {
+            "id" => "0"
+        }
+    },
+         "agent" => {
+        "ephemeral_id" => "50c06e24-cbdb-4f3c-9e2b-5000d2eacb29",
+                  "id" => "1ed7db4e-8f71-4581-8c21-c062f7e6430b",
+                "name" => "bhnam",
+                "type" => "journalbeat",
+            "hostname" => "bhnam",
+             "version" => "7.15.2"
+    },
+          "tags" => [
+        [0] "beats_input_codec_plain_applied"
+    ],
+           "ecs" => {
+        "version" => "1.11.0"
+    },
+       "systemd" => {
+               "cgroup" => "/system.slice/ssh.service",
+                 "unit" => "ssh.service",
+                "slice" => "system.slice",
+        "invocation_id" => "7ea96993523646c3a3647ca3b0f89030",
+            "transport" => "syslog"
+    },
+           "log" => {
+        "syslog" => {
+            "priority" => 6,
+            "facility" => {
+                "name" => 4
+            }
+        }
+    },
+        "fields" => {
+        "host_type" => "proxmox",
+           "source" => "journal"
+    },
+         "event" => {
+            "kind" => "event",
+         "created" => "2025-10-29T22:17:40.995Z",
+        "original" => "Failed password for root from 120.26.115.64 port 47926 ssh2"
+    },
+       "message" => "Failed password for root from 120.26.115.64 port 47926 ssh2",
+          "host" => {
+        "containerized" => false,
+                   "id" => "8915ce0f877444b7b2d21de600c6bc3d",
+         "architecture" => "x86_64",
+                 "name" => "bhnam",
+             "hostname" => "bhnam",
+                  "mac" => [
+            [ 0] "0a:e0:af:d2:0a:45",
+            [ 1] "0a:e0:af:d2:0a:45",
+            [ 2] "5e:73:14:38:cd:e8",
+            [ 3] "e6:79:c7:38:d7:46",
+            [ 4] "c6:77:9b:bb:d7:a0",
+            [ 5] "e6:79:c7:38:d7:46",
+            [ 6] "56:52:d9:74:56:bf",
+            [ 7] "4a:22:dc:e4:25:96",
+            [ 8] "ae:76:0a:f2:24:31",
+            [ 9] "4a:22:dc:e4:25:96",
+            [10] "ce:5c:4d:7c:80:63",
+            [11] "1a:e5:02:ae:a7:ab",
+            [12] "c6:1d:1e:30:03:23",
+            [13] "1a:e5:02:ae:a7:ab"
+        ],
+                   "os" => {
+            "codename" => "bookworm",
+              "family" => "debian",
+              "kernel" => "6.8.12-15-pve",
+                "name" => "Debian GNU/Linux",
+                "type" => "linux",
+             "version" => "12 (bookworm)",
+            "platform" => "debian"
+        },
+                   "ip" => [
+            [0] "192.168.22.10",
+            [1] "fe80::8e0:afff:fed2:a45"
+        ]
+    },
+       "process" => {
+          "args_count" => 1,
+                 "pid" => 389237,
+        "command_line" => "\"sshd: root [priv]\"",
+                "args" => [
+            [0] "\"sshd: root [priv]\""
+        ]
+    }
+}
+{
+      "journald" => {
+            "gid" => 0,
+         "custom" => {
+               "runtime_scope" => "system",
+            "syslog_timestamp" => "Sep 17 04:47:13 ",
+             "selinux_context" => "unconfined\n"
+        },
+            "pid" => 389237,
+            "uid" => 0,
+           "host" => {
+            "boot_id" => "77183495e892440c8c3db0de939401e3"
+        },
+        "process" => {
+                    "name" => "sshd",
+            "command_line" => "\"sshd: root [priv]\"",
+              "executable" => "/usr/sbin/sshd",
+             "capabilites" => "1ffffffffff"
+        }
+    },
+        "syslog" => {
+               "pid" => 389237,
+        "identifier" => "sshd",
+          "facility" => 4,
+          "priority" => 6
+    },
+      "@version" => "1",
+    "@timestamp" => 2025-09-16T21:47:13.318Z,
+          "user" => {
+           "id" => "0",
+        "group" => {
+            "id" => "0"
+        }
+    },
+         "agent" => {
+        "ephemeral_id" => "50c06e24-cbdb-4f3c-9e2b-5000d2eacb29",
+                  "id" => "1ed7db4e-8f71-4581-8c21-c062f7e6430b",
+                "name" => "bhnam",
+                "type" => "journalbeat",
+            "hostname" => "bhnam",
+             "version" => "7.15.2"
+    },
+          "tags" => [
+        [0] "beats_input_codec_plain_applied"
+    ],
+           "ecs" => {
+        "version" => "1.11.0"
+    },
+       "systemd" => {
+               "cgroup" => "/system.slice/ssh.service",
+                 "unit" => "ssh.service",
+                "slice" => "system.slice",
+        "invocation_id" => "7ea96993523646c3a3647ca3b0f89030",
+            "transport" => "syslog"
+    },
+           "log" => {
+        "syslog" => {
+            "priority" => 6,
+            "facility" => {
+                "name" => 4
+            }
+        }
+    },
+        "fields" => {
+        "host_type" => "proxmox",
+           "source" => "journal"
+    },
+         "event" => {
+         "created" => "2025-10-29T22:17:40.995Z",
+            "kind" => "event",
+        "original" => "Connection closed by authenticating user root 120.26.115.64 port 47926 [preauth]"
+    },
+       "message" => "Connection closed by authenticating user root 120.26.115.64 port 47926 [preauth]",
+          "host" => {
+        "containerized" => false,
+                   "id" => "8915ce0f877444b7b2d21de600c6bc3d",
+         "architecture" => "x86_64",
+                 "name" => "bhnam",
+             "hostname" => "bhnam",
+                  "mac" => [
+            [ 0] "0a:e0:af:d2:0a:45",
+            [ 1] "0a:e0:af:d2:0a:45",
+            [ 2] "5e:73:14:38:cd:e8",
+            [ 3] "e6:79:c7:38:d7:46",
+            [ 4] "c6:77:9b:bb:d7:a0",
+            [ 5] "e6:79:c7:38:d7:46",
+            [ 6] "56:52:d9:74:56:bf",
+            [ 7] "4a:22:dc:e4:25:96",
+            [ 8] "ae:76:0a:f2:24:31",
+            [ 9] "4a:22:dc:e4:25:96",
+            [10] "ce:5c:4d:7c:80:63",
+            [11] "1a:e5:02:ae:a7:ab",
+            [12] "c6:1d:1e:30:03:23",
+            [13] "1a:e5:02:ae:a7:ab"
+        ],
+                   "os" => {
+              "family" => "debian",
+            "codename" => "bookworm",
+              "kernel" => "6.8.12-15-pve",
+                "name" => "Debian GNU/Linux",
+                "type" => "linux",
+             "version" => "12 (bookworm)",
+            "platform" => "debian"
+        },
+                   "ip" => [
+            [0] "192.168.22.10",
+            [1] "fe80::8e0:afff:fed2:a45"
+        ]
+    },
+       "process" => {
+                 "pid" => 389237,
+          "args_count" => 1,
+        "command_line" => "\"sshd: root [priv]\"",
+                "args" => [
+            [0] "\"sshd: root [priv]\""
+        ]
+    }
+}

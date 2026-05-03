@@ -1,0 +1,144 @@
+-------------------------------------------------------------------
+| Tách filebeat ra thành nhiều service hoạt động
+-------------------------------------------------------------------
+
+
+-------------------------------------------------------------------
+🧩 Mục tiêu
+-------------------------------------------------------------------
+Tạo 2 service:
+filebeat-fail2ban.service → đọc /var/log/fail2ban.log
+filebeat-auth.service → đọc /var/log/auth.log
+
+
+-------------------------------------------------------------------
+⚙️ Bước 1: Tạo 2 file cấu hình riêng
+-------------------------------------------------------------------
+/etc/filebeat/filebeat-fail2ban.yml
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/fail2ban.log
+    fields:
+      log_type: fail2ban
+    fields_under_root: true
+
+output.logstash:
+  hosts: ["elk-server:5045"]
+
+/etc/filebeat/filebeat-auth.yml
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/auth.log
+    fields:
+      log_type: auth
+    fields_under_root: true
+
+output.logstash:
+  hosts: ["elk-server:5046"]
+
+
+-------------------------------------------------------------------
+⚙️ Bước 2: Nhân đôi service gốc
+-------------------------------------------------------------------
+sudo cp /lib/systemd/system/filebeat.service /etc/systemd/system/filebeat-fail2ban.service
+sudo cp /lib/systemd/system/filebeat.service /etc/systemd/system/filebeat-auth.service
+
+-------------------------------------------------------------------
+⚙️ Bước 3: Sửa nội dung từng file service
+-------------------------------------------------------------------
+/etc/systemd/system/filebeat-fail2ban.service
+
+thay dòng:
+Environment="BEAT_CONFIG_OPTS=-c /etc/filebeat/filebeat.yml"
+
+thành: 
+Environment="BEAT_CONFIG_OPTS=-c /etc/filebeat/filebeat-fail2ban.yml"
+
+Đồng thời đổi tên mô tả để dễ phân biệt:
+Description=Filebeat Fail2ban - sends /var/log/fail2ban.log to Logstash
+
+Tìm dòng:
+Environment="BEAT_PATH_OPTS=--path.home /usr/share/filebeat --path.config /etc/filebeat --path.data /var/lib/filebeat --path.logs /var/log/filebeat"
+
+Sửa thành (thêm thư mục riêng, ví dụ /var/lib/filebeat-fail2ban):
+Environment="BEAT_PATH_OPTS=--path.home /usr/share/filebeat --path.config /etc/filebeat --path.data /var/lib/filebeat-fail2ban --path.logs /var/log/filebeat"
+
+Tạo thư mục đó và gán quyền:
+sudo mkdir -p /var/lib/filebeat-fail2ban
+sudo chown root:root /var/lib/filebeat-fail2ban
+sudo chmod 750 /var/lib/filebeat-fail2ban
+
+
+-------------------------------------------------------------------
+⚙️ Bước 4: Reload và kích hoạt
+-------------------------------------------------------------------
+sudo systemctl daemon-reload
+sudo systemctl enable --now filebeat-fail2ban
+sudo systemctl enable --now filebeat-auth
+
+-------------------------------------------------------------------
+✅ Bước 5: Kiểm tra trạng thái
+-------------------------------------------------------------------
+sudo systemctl status filebeat-fail2ban
+sudo systemctl status filebeat-auth
+
+
+-------------------------------------------------------------------
+bản chuẩn áp dụng khi có nhiều service Filebeat song song 👇
+-------------------------------------------------------------------
+
+-------------------------------------------------------------------
+🧰 1. Chạy Filebeat ở foreground (debug) — riêng từng instance
+-------------------------------------------------------------------
+sudo /usr/share/filebeat/bin/filebeat -e -c /etc/filebeat/filebeat-fail2ban.yml --path.data /var/lib/filebeat-fail2ban
+⚠️ Quan trọng: thêm --path.data /var/lib/filebeat-fail2ban để tránh bị lock.
+
+
+-------------------------------------------------------------------
+🧩 2. Kiểm tra cấu hình trước khi start
+-------------------------------------------------------------------
+sudo filebeat test config -c /etc/filebeat/filebeat-fail2ban.yml
+sudo filebeat test config -c /etc/filebeat/filebeat-auth.yml
+
+✅ Nếu báo Config OK là an toàn để start service.
+
+-------------------------------------------------------------------
+3. Kiểm tra kết nối tới Logstash
+-------------------------------------------------------------------
+sudo filebeat test output -c /etc/filebeat/filebeat-fail2ban.yml
+
+
+
+-------------------------------------------------------------------
+🧪 4. Test chạy với file config riêng (không ảnh hưởng service)
+-------------------------------------------------------------------
+Nếu bạn muốn kiểm tra tạm thời một config khác, ví dụ filebeat-test.yml:
+sudo filebeat -e -c /etc/filebeat/filebeat-test.yml --path.data /var/lib/filebeat-test
+
+-------------------------------------------------------------------
+♻️ 5. Đọc lại log từ đầu (xóa registry)
+-------------------------------------------------------------------
+sudo systemctl stop filebeat-fail2ban
+sudo rm -rf /var/lib/filebeat-fail2ban/registry
+sudo filebeat -e -c /etc/filebeat/filebeat-fail2ban.yml --path.data /var/lib/filebeat-fail2ban
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

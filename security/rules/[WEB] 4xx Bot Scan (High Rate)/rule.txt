@@ -1,0 +1,3 @@
+[WEB] 4xx Bot Scan (High Rate)
+
+Phát hiện hoạt động dò quét web tốc độ cao, thường do: Bot scan tự động, Vulnerability scanner, Fuzzer chạy nhanh. Đặc trưng: Nhiều request sai (4xx), Tập trung trong thời gian rất ngắn

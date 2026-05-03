@@ -1,0 +1,343 @@
+{"transaction":{"client_ip":"192.168.22.2","time_stamp":"Wed Mar 18 15:53:21 2026","server_id":"86ac953691ead151eab514d9e7f33264a33a266d","client_port":45422,"host_ip":"192.168.22.20","host_port":80,"unique_id":"177382400168.690968","request":{"method":"GET","http_version":1.1,"uri":"/?id=1%20union%20select%201","headers":{"Host":"dvwa.bhnam-elk.com","User-Agent":"curl/8.18.0","Accept":"*/*"}},"response":{"http_code":302},"producer":{"modsecurity":"ModSecurity v3.0.12 (Linux)","connector":"ModSecurity-nginx v1.0.3","secrules_engine":"DetectionOnly","components":[]},"messages":[{"message":"SQL Injection - UNION SELECT","details":{"match":"Matched \"Operator `Rx' with parameter `(?i)union\\s+select' against variable `ARGS:id' (Value: `1 union select 1' )","reference":"o2,12v9,16","ruleId":"10001","file":"/etc/nginx/modsec/custom-rules.conf","lineNumber":"8","data":"","severity":"0","ver":"","rev":"","tags":[],"maturity":"0","accuracy":"0"}}]}}
+{"transaction":{"client_ip":"192.168.22.2","time_stamp":"Wed Mar 18 15:53:22 2026","server_id":"86ac953691ead151eab514d9e7f33264a33a266d","client_port":45434,"host_ip":"192.168.22.20","host_port":80,"unique_id":"177382400211.125932","request":{"method":"GET","http_version":1.1,"uri":"/?id=1%20union%20select%201","headers":{"Host":"dvwa.bhnam-elk.com","User-Agent":"curl/8.18.0","Accept":"*/*"}},"response":{"http_code":302},"producer":{"modsecurity":"ModSecurity v3.0.12 (Linux)","connector":"ModSecurity-nginx v1.0.3","secrules_engine":"DetectionOnly","components":[]},"messages":[{"message":"SQL Injection - UNION SELECT","details":{"match":"Matched \"Operator `Rx' with parameter `(?i)union\\s+select' against variable `ARGS:id' (Value: `1 union select 1' )","reference":"o2,12v9,16","ruleId":"10001","file":"/etc/nginx/modsec/custom-rules.conf","lineNumber":"8","data":"","severity":"0","ver":"","rev":"","tags":[],"maturity":"0","accuracy":"0"}}]}}
+
+📌 Log 1
+{
+  "transaction": {
+    "client_ip": "192.168.22.2",
+    "time_stamp": "Wed Mar 18 15:53:21 2026",
+    "server_id": "86ac953691ead151eab514d9e7f33264a33a266d",
+    "client_port": 45422,
+    "host_ip": "192.168.22.20",
+    "host_port": 80,
+    "unique_id": "177382400168.690968",
+    "request": {
+      "method": "GET",
+      "http_version": 1.1,
+      "uri": "/?id=1%20union%20select%201",
+      "headers": {
+        "Host": "dvwa.bhnam-elk.com",
+        "User-Agent": "curl/8.18.0",
+        "Accept": "*/*"
+      }
+    },
+    "response": {
+      "http_code": 302
+    },
+    "producer": {
+      "modsecurity": "ModSecurity v3.0.12 (Linux)",
+      "connector": "ModSecurity-nginx v1.0.3",
+      "secrules_engine": "DetectionOnly",
+      "components": []
+    },
+    "messages": [
+      {
+        "message": "SQL Injection - UNION SELECT",
+        "details": {
+          "match": "Matched \"Operator `Rx' with parameter `(?i)union\\s+select' against variable `ARGS:id' (Value: `1 union select 1' )",
+          "reference": "o2,12v9,16",
+          "ruleId": "10001",
+          "file": "/etc/nginx/modsec/custom-rules.conf",
+          "lineNumber": "8",
+          "data": "",
+          "severity": "0",
+          "ver": "",
+          "rev": "",
+          "tags": [],
+          "maturity": "0",
+          "accuracy": "0"
+        }
+      }
+    ]
+  }
+}
+
+📌 Log 2
+{
+  "transaction": {
+    "client_ip": "192.168.22.2",
+    "time_stamp": "Wed Mar 18 15:53:22 2026",
+    "server_id": "86ac953691ead151eab514d9e7f33264a33a266d",
+    "client_port": 45434,
+    "host_ip": "192.168.22.20",
+    "host_port": 80,
+    "unique_id": "177382400211.125932",
+    "request": {
+      "method": "GET",
+      "http_version": 1.1,
+      "uri": "/?id=1%20union%20select%201",
+      "headers": {
+        "Host": "dvwa.bhnam-elk.com",
+        "User-Agent": "curl/8.18.0",
+        "Accept": "*/*"
+      }
+    },
+    "response": {
+      "http_code": 302
+    },
+    "producer": {
+      "modsecurity": "ModSecurity v3.0.12 (Linux)",
+      "connector": "ModSecurity-nginx v1.0.3",
+      "secrules_engine": "DetectionOnly",
+      "components": []
+    },
+    "messages": [
+      {
+        "message": "SQL Injection - UNION SELECT",
+        "details": {
+          "match": "Matched \"Operator `Rx' with parameter `(?i)union\\s+select' against variable `ARGS:id' (Value: `1 union select 1' )",
+          "reference": "o2,12v9,16",
+          "ruleId": "10001",
+          "file": "/etc/nginx/modsec/custom-rules.conf",
+          "lineNumber": "8",
+          "data": "",
+          "severity": "0",
+          "ver": "",
+          "rev": "",
+          "tags": [],
+          "maturity": "0",
+          "accuracy": "0"
+        }
+      }
+    ]
+  }
+}
+
+OK, log của bạn là JSON chuẩn rồi → triển khai pipeline Filebeat → Logstash → ELK sẽ rất đẹp nếu parse đúng 👍
+Mình đi thẳng vào cách làm chuẩn SOC (production style) cho case của bạn.
+Tổng quan flow
+ModSecurity JSON log
+        ↓
+Filebeat (decode JSON)
+        ↓
+Logstash (filter + normalize)
+        ↓
+Elasticsearch (index + ECS)
+        ↓
+Kibana (dashboard / alert)
+
+
+⚙️ 1. Filebeat config (QUAN TRỌNG NHẤT)
+Bạn phải bật JSON parsing ngay từ Filebeat để không bị lỗi string.
+📌 filebeat.yml
+filebeat.inputs:
+  - type: log
+    paths:
+      - /var/log/nginx/modsec_audit.log   # sửa đúng path của bạn
+
+    json.keys_under_root: true
+    json.add_error_key: true
+    json.expand_keys: true
+
+    # mỗi dòng là 1 JSON object
+    json.overwrite_keys: true
+
+output.logstash:
+  hosts: ["192.168.22.10:5044"]   # IP Logstash
+ 
+note:
+| Config            | Tác dụng               |
+| ----------------- | ---------------------- |
+| `keys_under_root` | Đưa JSON lên root      |
+| `add_error_key`   | Báo lỗi nếu parse fail |
+| `expand_keys`     | Tách key dạng `a.b`    |
+| `overwrite_keys`  | Cho JSON ghi đè field  |
+
+  
+⚙️ 2. Logstash config
+📌 input
+input {
+  beats {
+    port => 5044
+  }
+}
+📌 filter (parse + flatten + SOC ready)
+Log của bạn bị nested sâu (transaction → request → messages)
+→ cần flatten để dùng Kibana dễ.
+filter {
+
+  # rename cho dễ dùng
+  mutate {
+    rename => { "[transaction][client_ip]" => "client_ip" }
+    rename => { "[transaction][time_stamp]" => "timestamp" }
+    rename => { "[transaction][host_ip]" => "server_ip" }
+    rename => { "[transaction][request][method]" => "http_method" }
+    rename => { "[transaction][request][uri]" => "url" }
+    rename => { "[transaction][response][http_code]" => "status_code" }
+  }
+
+  # lấy message đầu tiên
+  mutate {
+    add_field => {
+      "attack_type" => "%{[transaction][messages][0][message]}"
+      "rule_id" => "%{[transaction][messages][0][details][ruleId]}"
+    }
+  }
+
+  # parse timestamp
+  date {
+    match => ["timestamp", "EEE MMM dd HH:mm:ss yyyy"]
+    target => "@timestamp"
+  }
+
+  # thêm field SOC useful
+  mutate {
+    add_field => {
+      "event_type" => "waf"
+      "log_source" => "modsecurity"
+    }
+  }
+}
+📌 output
+output {
+  elasticsearch {
+    hosts => ["http://192.168.22.11:9200"]
+    index => "waf-modsec-%{+YYYY.MM.dd}"
+  }
+
+  stdout { codec => rubydebug }
+}
+
+
+🔥 Kết quả sau khi parse (trong Kibana)
+Bạn sẽ query cực dễ:
+📌 KQL
+attack_type: "SQL Injection - UNION SELECT"
+📌 Detect SQLi
+url: "*union*select*"
+📌 Top attacker IP
+client_ip: *
+
+
+
+
+filter {
+  if "dvwa-modsecurity" in [tags] {
+
+    mutate {
+      rename => {
+        "[json][transaction][client_ip]" => "[client][ip]"
+        "[json][transaction][request][method]" => "[http][request][method]"
+        "[json][transaction][request][uri]" => "[url][original]"
+        "[json][transaction][response][http_code]" => "[http][response][status_code]"
+      }
+    }
+
+    ruby {
+      code => '
+        msgs = event.get("[json][transaction][messages]")
+        if msgs && msgs.length > 0
+          m = msgs[0]
+          event.set("[rule][id]", m["details"]["ruleId"])
+          event.set("[rule][description]", m["message"])
+        end
+      '
+    }
+
+    mutate {
+      add_field => {
+        "[event][kind]" => "alert"
+        "[event][category]" => "web"
+        "[event][type]" => "attack"
+      }
+    }
+
+    mutate {
+      remove_field => ["json"]
+    }
+  }
+}
+
+
+
+
+🔥 2. Bộ field CHUẨN ECS cho log match (bạn nên giữ)
+🧠 Event
+event.kind: event
+event.category: web
+event.type: info
+event.action: waf_match
+event.module: modsecurity
+event.dataset: waf
+
+🛡️ Rule (quan trọng nhất)
+rule.id
+rule.name
+rule.category: web_attack
+rule.ruleset: modsecurity
+👉 Đây là cái bạn sẽ dùng để:
+lọc attack
+tạo alert
+
+🌐 Network
+source.ip
+source.port
+destination.ip
+destination.port
+network.protocol: http
+network.transport: tcp
+
+🌍 HTTP + URL
+http.request.method
+http.response.status_code
+url.path
+url.query
+url.full
+
+🧑‍💻 Client
+user_agent.original
+
+🏷️ Custom (rất nên có cho WAF)
+waf.matched: true
+waf.rule_id
+waf.attack_type   # optional (sqli, xss,...)
+
+
+🧾 Forensic
+event.original
+
+
+
+
+
+filter {
+
+  # chỉ check có match rule
+  if [json][transaction][messages] {
+
+    mutate {
+      add_field => {
+        "[event][kind]" => "event"
+        "[event][category]" => "web"
+        "[event][type]" => "info"
+        "[event][action]" => "waf_match"
+        "[event][module]" => "modsecurity"
+        "[event][dataset]" => "waf"
+
+        "[waf][matched]" => true
+      }
+    }
+
+    # rule mapping
+    mutate {
+      add_field => {
+        "[rule][id]" => "%{[json][transaction][messages][0][details][ruleId]}"
+        "[rule][name]" => "%{[json][transaction][messages][0][message]}"
+        "[rule][category]" => "web_attack"
+        "[rule][ruleset]" => "modsecurity"
+      }
+    }
+  }
+
+  # ECS network
+  mutate {
+    rename => {
+      "[json][transaction][client_ip]" => "[source][ip]"
+      "[json][transaction][client_port]" => "[source][port]"
+      "[json][transaction][host_ip]" => "[destination][ip]"
+      "[json][transaction][host_port]" => "[destination][port]"
+    }
+  }
+}
+
+

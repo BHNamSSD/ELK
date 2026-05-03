@@ -1,0 +1,51 @@
+# ============================= Journalbeat inputs =============================
+
+journalbeat.inputs:
+
+#my config
+#==============================
+- paths: []
+  seek: cursor
+  include_matches:
+    - "systemd.unit=ssh.service"
+  fields:
+    host_type: proxmox
+    source: journal
+  
+  
+#==============================
+
+
+
+  # Paths that should be crawled and fetched. Possible values files and directories.
+  # When setting a directory, all journals under it are merged.
+  # When empty starts to read from local journal.
+#- paths: []
+
+  # An optional unique identifier for the input. By providing a unique `id` you
+  # can operate multiple inputs on the same journal. This allows each input's
+  # cursor to be persisted independently in the registry file.
+  #id: ""
+
+  # The number of seconds to wait before trying to read again from journals.
+  #backoff: 1s
+  # The maximum number of seconds to wait before attempting to read again from journals.
+  #max_backoff: 20s
+
+  # Position to start reading from journal. Valid values: head, tail, cursor
+  #seek: cursor
+  # Fallback position if no cursor data is available.
+  #cursor_seek_fallback: head
+
+  # Exact matching for field values of events.
+  # Matching for nginx entries: "systemd.unit=nginx"
+  #include_matches: []
+
+  # Optional fields that you can specify to add additional information to the
+  # output. Fields can be scalar values, arrays, dictionaries, or any nested
+  # combination of these.
+  #fields:
+  #  env: staging
+  
+  
+ 

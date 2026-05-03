@@ -1,0 +1,136 @@
+# Welcome to the Dev Tools Console!
+#
+# You can use Console to explore the Elasticsearch API. See the Elasticsearch API reference to learn more:
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html
+#
+# Here are a few examples to get you started.
+
+GET /_cat/nodes?v
+GET /_cat/indices?v
+GET /_cluster/health
+
+
+
+GET /_security/user/logstash_internal
+
+GET /_security/role/logstash_writer
+
+
+
+POST /_security/api_key
+{
+  "name": "logstash-internal-api-key",
+  "expiration": "90d"
+}
+
+POST /_security/api_key
+{
+  "name": "metricbeat-api-key",
+  "role_descriptors": {
+    "metricbeat_writer": {
+      "cluster": ["monitor", "manage_index_templates", "manage_ilm"],
+      "index": [
+        {
+          "names": ["metricbeat-*"],
+          "privileges": ["write","create_index"]
+        }
+      ]
+    }
+  }
+}
+
+
+POST /_security/api_key
+{
+  "name": "metricbeat-api-key",
+  "expiration": "90d", 
+  "role_descriptors": {
+    "metricbeat_writer": {
+      "cluster": ["monitor", "manage_index_templates", "manage_ilm"],
+      "index": [
+        {
+          "names": ["metricbeat-*"],
+          "privileges": ["create_index", "view_index_metadata", "write"]
+        }
+      ]
+    }
+  }
+}
+
+
+POST /_security/role/metricbeat_setup
+{
+  "cluster": ["monitor", "manage_index_templates", "manage_ilm"],
+  "indices": [
+    {
+      "names": ["metricbeat-*"],
+      "privileges": ["create_index", "view_index_metadata", "write"]
+    }
+  ],
+  "applications": [
+    {
+      "application": "kibana-.kibana",
+      "privileges": ["all"],
+      "resources": ["space:default"]
+    }
+  ]
+}
+
+POST /_security/user/metricbeat_setup
+{
+  "password": "abc12345@",
+  "roles": ["metricbeat_setup"],
+  "full_name": "Metricbeat Setup User"
+}
+
+GET /_security/role/metricbeat_setup
+
+
+POST /_security/api_key
+{
+  "name": "metricbeat-output-api-key",
+  "role_descriptors": {
+    "metricbeat_writer": {
+      "cluster": ["monitor", "manage_index_templates", "manage_ilm"],
+      "index": [
+        {
+          "names": ["metricbeat-*"],
+          "privileges": ["create_index","view_index_metadata","write"]
+        }
+      ]
+    }
+  }
+}
+
+#delete data
+DELETE .monitoring-es-7-2025.09.09
+DELETE .monitoring-es-7-2025.09.08
+DELETE .monitoring-es-7-2025.09.07
+
+DELETE .monitoring-kibana-7-2025.09.07
+DELETE .monitoring-kibana-7-2025.09.08
+DELETE .monitoring-kibana-7-2025.09.09
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
